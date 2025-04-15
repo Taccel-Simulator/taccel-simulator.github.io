@@ -1,0 +1,11 @@
+:tocdepth: 2
+
+Taccel APIs
+======================
+
+The Taccel Simulator is built upon the Warp-IPC. It provides the importing and simulating of VBTS-integrated robots, and synthesizes tactile signals for the sensors.
+
+.. autoclass:: taccel.taccel.TaccelModel
+   :members:
+   :undoc-members:
+   :show-inheritance:

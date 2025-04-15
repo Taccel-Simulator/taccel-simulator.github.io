@@ -1,0 +1,34 @@
+# Current Progress
+
+## Known Issues
+
+Several known issues will be fixed or optimized in the following work or releases.
+
+### Missing Features
+
+- The soft bodies must be added after affine bodies when building up the scene. More flexible scene setup will be introduced.
+- The renderer can only visualize the entires scene as a single mesh.
+- Currently `warp.sim.Control` is not supported. Control APIs are exposed in the `ASRModel` class.
+
+### Force Loading Modules and Kernels from Cache
+
+Currently, some kernels and modules are not open-sourced. We release the compiled PTX files, and our fork of NVIDIA Warp will load the PTX files from `ptx/`. This is how this is implemented:
+
+In `warp/context.py`, we have hash disabled if its name (for modules) / key (for kernels) starts with a certain strings. The strings are specified by the `WARP_DISABLE_HASH_PREFIX` environment variable (separated by comma `,`), and is `["warp_ipc"]` by default to disable hashing for our abd kernels and modules. `warp` kernels and modules will not be effected.
+
+The modification is done by the following liness for `Module` (and similarly for `Kernel`):
+
+```python
+class Module:
+    disable_hash: bool = False
+
+    def __init__(self, name: Optional[str], loader=None):
+        # ...
+
+        for prefix in [m.strip() for m in os.environ.get("WARP_DISABLE_HASH_PREFIX", "warp_ipc").split(",")]:
+            if self.name.startswith(prefix):
+                self.disable_hash = True
+                print(f"Prefix {prefix} hit. Disabling hashing for module {self.name}")
+                break
+    # ...
+```

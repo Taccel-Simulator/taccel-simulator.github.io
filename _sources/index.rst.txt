@@ -1,0 +1,111 @@
+.. Taccel documentation master file, created by
+   sphinx-quickstart on Mon Mar  3 14:21:46 2025.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Taccel: Scaling Up Vision-based Tactile Robotics via High-performance GPU Simulation
+====================================================================================
+
+
+`Yuyang Li <https://yuyangli.com>`__\ :sup:`1,2 *`,
+`Wenxin Du <https://dwxrycb123.github.io/>`__\ :sup:`3 *`,
+`Chang Yu <https://changyu.io/>`__\ :sup:`3 *`,
+`Puhao Li <https://xiaoyao-li.github.io>`__\ :sup:`2`,
+`Zihang Zhao <https://zihangzhao.com/>`__\ :sup:`1`,
+`Tengyu Liu <https://tengyu.ai>`__\ :sup:`2`,
+`Chenfanfu Jiang <https://www.math.ucla.edu/~cffjiang/>`__\ :sup:`3 †`,
+`Yixin Zhu <https://yzhu.io>`__\ :sup:`1 †`,
+`Siyuan Huang <https://siyuanhuang.com>`__\ :sup:`2 †`
+
+:sup:`1` Institute for AI, PKU  
+:sup:`2` State Key Lab of General AI, BIGAI  
+:sup:`3` AIVC Lab, UCLA  
+
+:sup:`*` Equal Contributor  
+:sup:`†` Corresponding Author 
+
+[📄 `Paper <https://taccel-simulator.github.io/assets/taccel-paper.pdf>`__]
+[📘 `Docs <https://taccel-simulator.github.io>`__]
+[🛠️ `Code <https://github.com/Taccel-Simulator/Taccel>`__]
+[🗂️ `Dataset (Coming Soon) <.>`__]
+
+
+.. image:: _static/overview.png
+   :width: 100%
+   :align: center
+   :alt: Taccel Infrastructure
+
+
+Taccel is a high-performance simulation platform for vision-based tactile sensors and robots.
+
+Taccel integrates IPC and ABD to model robots, tactile sensors, and objects with both accuracy and unprecedented speed, simulating precise physics, realistic tactile signals, and flexible robot-sensor configurations through user-friendly APIs.
+
+.. raw:: html
+
+   <div style="clear: both;"></div>
+
+Examples
+--------
+
+Our release comes with several examples. See `Taccel Examples <examples/taccel_examples.html>`__ for more details.
+
+Contributing
+------------
+
+We welcome contributions from the community to improve Taccel and make it even more useful for everyone. You can pull requests, report issues, or suggest features via `our GitHub repo <https://github.com/Taccel-Simulator/Taccel>`__.
+
+For more details and instructions, please follow the `contributing guide <./contribute.html>`__.
+
+Citing
+------
+
+If you use Taccel in your research, please use the following citation:
+
+.. code:: bibtex
+
+   TBD
+
+Index
+-----
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Get Started
+
+   concepts
+   install
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Warp-IPC References
+
+   modules/robot
+   modules/model
+   modules/integrator
+   examples/warp_ipc_examples.rst
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Taccel References
+
+   modules/tactile_robot
+   modules/sensor
+   modules/taccel
+   examples/taccel_examples
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Tools
+
+   tools/render
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Development
+
+   contribute
+   issue_todos

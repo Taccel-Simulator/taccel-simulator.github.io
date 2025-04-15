@@ -1,0 +1,14 @@
+:tocdepth: 2
+
+ASR Model APIs
+======================
+
+The Affine-Soft-Robot (ASR) Model includes the states for
+* Affine bodies
+* Soft bodies
+* Robots, with vision-based tactile sensors as soft bodies
+
+.. autoclass:: warp_ipc.sim_model.ASRModel
+   :members:
+   :undoc-members:
+   :show-inheritance:

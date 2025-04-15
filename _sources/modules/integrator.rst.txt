@@ -1,0 +1,9 @@
+:tocdepth: 2
+
+IPC Integrator
+======================
+
+.. autoclass:: warp_ipc.ipc_integrator.IPCIntegrator
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,100 @@
+# Installation
+
+Taccel runs on Python > 3.10. We strongly recommend using a virtual environment with tools like conda.
+
+
+## Install the Essential Libraries
+
+```shell
+sudo apt install libsuitesparse-dev
+```
+
+## Clone Our Repo and Install Taccel
+
+
+```shell
+git clone --recursive https://github.com/Taccel-Simulator/Taccel -b main
+cd Taccel
+```
+
+After cloning, go through the following steps:
+
+### Prepare a Virtual Environment
+
+Create a virtual environment:
+
+```shell
+conda create -n taccel python=3.10 -y
+```
+
+Install required packages:
+
+```shell
+conda activate taccel
+pip install -r requirements.txt
+
+# A few more dependencies that requires torch being already installed
+pip install torch-scatter
+```
+
+### Install Our Fork of NVIDIA Warp
+
+We need to install a modified fork of NVIDIA Warp. It keeps the update from the [NVIDIA/Warp](https://nvidia.github.io) repo, but with the context module modified to force loading kernels from the PTX files.
+
+```shell
+cd thirdparty/warp
+python build_lib.py
+pip install -e .
+```
+
+This step is problematic. For issues please refer to [this page](https://nvidia.github.io/warp/installation.html#building-from-source). Some FAQs below:
+
+#### FAQ 1: CUDA Toolkit
+
+Before building, make sure that the CUDA Toolkit 12.x is installed. You may need to set the environment variable if related errors occur:
+
+```shell
+# Optional: We need CUDA 12
+export CUDA_HOME=/usr/local/cuda-12.x
+```
+
+#### FAQ 2: `'GLIBCXX_3.4.30' not found`
+
+A frequent problem is:
+
+```
+OSError: <...>/libstdc++.so.6: version `GLIBCXX_3.4.30' not found (required by <...>/warp/warp/bin/warp.so)
+```
+
+To solve this, upgrade the `libstdcxx-ng` with conda:
+
+```shell
+conda install -c conda-forge libstdcxx-ng=12.1
+```
+
+#### FAQ 3: `cc1plus: execvp: No such file or directory`
+
+This may be due to errors in your `g++` installation. Please refer to [this page](https://stackoverflow.com/questions/36353302/gcc-cannot-find-cc1plus).
+
+#### FAQ 4: `Packman` timeout fetching `libmathdx`
+
+If the `packman` cannot download the `libmathdx` due to Internet connection issues, [download `libmathdx`](https://developer.nvidia.com/downloads/compute/cublasdx/redist/cublasdx/libmathdx-Linux-x86_64-0.1.2.tar.gz) manually, unzip the package, and pass the directory with the `--libmathdx_path` argument. For examples:
+
+```shell
+python build_lib.py --libmathdx_path=/home/jensen/utils/libmathdx
+```
+
+### Install the Warp-IPC and Taccel
+
+Then we will come back:
+
+```shell
+cd ../..  # get back to the root dir
+pip install -e .
+```
+
+This will install `warp_ipc` and `taccel` packages.
+
+### Finish
+
+After the steps above, your Taccel repo is ready to go.

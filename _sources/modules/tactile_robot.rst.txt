@@ -1,0 +1,17 @@
+:tocdepth: 2
+
+Tactile Robot Models
+==============================
+
+In Taccel, the robot links are represented by affine bodies, while the gel pads are discretized as tetrahedral meshes.
+
+.. image:: ../_static/robot_repr.png
+   :width: 80%
+   :align: center
+   :alt: Robot and Sensor Representation in Taccel
+
+.. autoclass:: taccel.taccel.TactileRobot
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :special-members: __init__

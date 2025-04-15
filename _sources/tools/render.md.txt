@@ -1,0 +1,13 @@
+# Rendering Tools
+
+## Dumping Scene Meshes for Visualization
+
+If the simulation scene is dumped with format `frame_x.ply`, the `viz_frames.py` can help you play and record the scene:
+
+```shell
+python viz_frames.py PATH_TO_YOUR_FRAMES_DIR
+```
+
+## Using the `warp.render`
+
+The current implementation is partially compatible with the `warp.render` framework. See [Deformable Objct Grasping Example](./examples/taccel_examples.html#deformable-object-grasping-with-tactile-sensors) as an example.

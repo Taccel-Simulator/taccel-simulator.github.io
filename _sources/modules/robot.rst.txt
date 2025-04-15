@@ -1,0 +1,9 @@
+:tocdepth: 2
+
+Robot Models
+==============================
+
+.. autoclass:: warp_ipc.robots.Robot
+   :members:
+   :undoc-members:
+   :show-inheritance:

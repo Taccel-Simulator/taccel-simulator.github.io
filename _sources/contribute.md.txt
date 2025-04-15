@@ -1,0 +1,31 @@
+# Contribution
+
+
+We welcome contributions from the community to improve Taccel and make it even more useful for everyone. You can pull requests, report issues, or suggest features via [our GitHub repo](https://github.com/Taccel-Simulator/Taccel). To contribute to Taccel, please follow the guide:
+
+## Code Formatting
+
+### Pre-commit Hooks
+
+For developers, please install pre-commit hooks:
+
+```bash
+sudo apt install pre-commit
+pre-commit install
+```
+
+If you use Visual Studio Code, please install install the [ruff vscode extension](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff). The `.vscode/settings.json` is configured aligning with the pre-commit hooks. Whenever you save the file, it will be formatted automatically.
+
+### Docstrings
+
+When contributing to the RoboVerse project, the developers are recommended to include the docstrings for their classes, members, functions. The [Python PEP 257 - Docstring Conventions](https://peps.python.org/pep-0257/) provides typical conventions, and the [Google Python Style Guide on the Comments and Docstrings](https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings) provides more details.
+
+Docstrings should be added for:
+
+- all modules, as well as the functions and classes exported by them
+- public methods, including the `__init__` constructors
+- `__init__.py`, describing the module that it's for
+
+Please refer to the [Sphinx autodoc docs](https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html) for the format of writing the docstrings, so that they can be automatically included by Sphinx.
+
+After finishing the docstrings for new modules, classes, or functions, you can add register the module within `docs/` following the [Sphinx autodoc docs](https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html) so that the docs can automatically generate the docs page for you.

@@ -1,0 +1,1483 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="IPC Integrator" href="integrator.html" /><link rel="prev" title="Robot Models" href="robot.html" />
+
+    <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
+        <title>ASR Model APIs - Taccel - Docs</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+<div class="announcement">
+  <aside class="announcement-content">
+     This is a pre-release version. 
+  </aside>
+</div>
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">Taccel - Docs</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">Taccel - Docs</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../concepts.html">Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Warp-IPC References</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="robot.html">Robot Models</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">ASR Model APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integrator.html">IPC Integrator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/warp_ipc_examples.html">Warp-IPC Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Taccel References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tactile_robot.html">Tactile Robot Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sensor.html">VBTS Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="taccel.html">Taccel APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/taccel_examples.html">Taccel Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tools</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tools/render.html">Rendering Tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contribute.html">Contribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../issue_todos.html">Current Progress</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="https://github.com/Taccel-Simulator/Taccel/blob/main/docs/modules/model.rst?plain=true" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div><div class="edit-this-page">
+  <a class="muted-link" href="https://github.com/Taccel-Simulator/Taccel/edit/main/docs/modules/model.rst" title="Edit this page">
+    <svg><use href="#svg-pencil"></use></svg>
+    <span class="visually-hidden">Edit this page</span>
+  </a>
+</div><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="asr-model-apis">
+<h1>ASR Model APIs<a class="headerlink" href="#asr-model-apis" title="Link to this heading">¶</a></h1>
+<p>The Affine-Soft-Robot (ASR) Model includes the states for
+* Affine bodies
+* Soft bodies
+* Robots, with vision-based tactile sensors as soft bodies</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">warp_ipc.sim_model.</span></span><span class="sig-name descname"><span class="pre">ASRModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_envs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">viz_envs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cuda:0'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>ABD-IPC-Robots Model</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.ABD_centers">
+<span class="sig-name descname"><span class="pre">ABD_centers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407ab1f0&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.ABD_centers" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.KinematicConstraintHelper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">KinematicConstraintHelper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#warp_ipc.sim_model.ASRModel" title="warp_ipc.sim_model.ASRModel"><span class="pre">ASRModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_stiffness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10000.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.KinematicConstraintHelper" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.KinematicConstraintHelper.increase_stiffness">
+<span class="sig-name descname"><span class="pre">increase_stiffness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">factor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.KinematicConstraintHelper.increase_stiffness" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.KinematicConstraintHelper.init">
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.KinematicConstraintHelper.init" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.KinematicConstraintHelper.initialize_stiffness">
+<span class="sig-name descname"><span class="pre">initialize_stiffness</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.KinematicConstraintHelper.initialize_stiffness" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.KinematicConstraintHelper.is_satisfied">
+<span class="sig-name descname"><span class="pre">is_satisfied</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.KinematicConstraintHelper.is_satisfied" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.KinematicConstraintHelper.project_system">
+<span class="sig-name descname"><span class="pre">project_system</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sys_grad</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.KinematicConstraintHelper.project_system" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.KinematicConstraintHelper.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.KinematicConstraintHelper.reset" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.KinematicConstraintHelper.reset_dof_satisfied">
+<span class="sig-name descname"><span class="pre">reset_dof_satisfied</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.KinematicConstraintHelper.reset_dof_satisfied" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.KinematicConstraintHelper.set_initial_stiffness">
+<span class="sig-name descname"><span class="pre">set_initial_stiffness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_stiffness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10000.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.KinematicConstraintHelper.set_initial_stiffness" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.KinematicConstraintHelper.update_satisfied">
+<span class="sig-name descname"><span class="pre">update_satisfied</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.KinematicConstraintHelper.update_satisfied" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.LinearConstraintHelper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LinearConstraintHelper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#warp_ipc.sim_model.ASRModel" title="warp_ipc.sim_model.ASRModel"><span class="pre">ASRModel</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.LinearConstraintHelper" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.LinearConstraintHelper.add_constraint">
+<span class="sig-name descname"><span class="pre">add_constraint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">constraint_row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">asarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.LinearConstraintHelper.add_constraint" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.LinearConstraintHelper.add_constraints">
+<span class="sig-name descname"><span class="pre">add_constraints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">constraint_rows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">asarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.LinearConstraintHelper.add_constraints" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.LinearConstraintHelper.finalize">
+<span class="sig-name descname"><span class="pre">finalize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.LinearConstraintHelper.finalize" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.LinearConstraintHelper.init">
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.LinearConstraintHelper.init" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.LinearConstraintHelper.project_system">
+<span class="sig-name descname"><span class="pre">project_system</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hess</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BsrMatrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grad</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.LinearConstraintHelper.project_system" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.SetStateHelper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SetStateHelper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#warp_ipc.sim_model.ASRModel" title="warp_ipc.sim_model.ASRModel"><span class="pre">ASRModel</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.SetStateHelper" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.SetStateHelper.clear_mask">
+<span class="sig-name descname"><span class="pre">clear_mask</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.SetStateHelper.clear_mask" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.SetStateHelper.init">
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.SetStateHelper.init" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.X">
+<span class="sig-name descname"><span class="pre">X</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cdafa0df340&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.X" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.a_y">
+<span class="sig-name descname"><span class="pre">a_y</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407aaef0&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.a_y" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.add_affine_body">
+<span class="sig-name descname"><span class="pre">add_affine_body</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">face</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">E</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mass_xi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.3</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">TriMeshBodyHandle</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.add_affine_body" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.add_garment_stitch">
+<span class="sig-name descname"><span class="pre">add_garment_stitch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stitches</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.add_garment_stitch" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.add_plane">
+<span class="sig-name descname"><span class="pre">add_plane</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">o</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.add_plane" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.add_robot">
+<span class="sig-name descname"><span class="pre">add_robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">urdf_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_coll_layer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coll_layers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disable_coll_layers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">self_collision</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.add_robot" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.add_soft_shell_body">
+<span class="sig-name descname"><span class="pre">add_soft_shell_body</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_stretching_stiffness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">E</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compression_softening</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bending_stiffness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mass_thickness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">TriMeshBodyHandle</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.add_soft_shell_body" title="Link to this definition">¶</a></dt>
+<dd><p>Constitutive model: Baraff-Witkin and dihedral angle bendings
+NOTE: Since this repository is only for POC, interfaces functionality will be limited.
+This function must be called after all affine bodies are added.
+add_soft_vol_body must be called after all soft shell bodies are added.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.add_soft_vol_body">
+<span class="sig-name descname"><span class="pre">add_soft_vol_body</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">UnstructuredGrid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">E</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coll_layer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">self_coll</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">TetMeshBodyHandle</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.add_soft_vol_body" title="Link to this definition">¶</a></dt>
+<dd><p>Constitutive model: Neo-Hookean/StVK for now; TODO: Corotated Linear
+NOTE: Since this repository is only for POC, interfaces functionality will be limited.
+This function must be called after all affine bodies are added.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.add_world_prismatic_joint">
+<span class="sig-name descname"><span class="pre">add_world_prismatic_joint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TriMeshBodyHandle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">_ScalarType_co</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">WorldJointHandle</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.add_world_prismatic_joint" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.add_world_revolute_joint">
+<span class="sig-name descname"><span class="pre">add_world_revolute_joint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TriMeshBodyHandle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_axis_position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">_ScalarType_co</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis_direction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">_ScalarType_co</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">WorldJointHandle</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.add_world_revolute_joint" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.affine_body_num">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">affine_body_num</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.affine_body_num" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.affine_density">
+<span class="sig-name descname"><span class="pre">affine_density</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407ab550&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.affine_density" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.affine_ext_force_field">
+<span class="sig-name descname"><span class="pre">affine_ext_force_field</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407ab190&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.affine_ext_force_field" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.affine_ext_y_force">
+<span class="sig-name descname"><span class="pre">affine_ext_y_force</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407ab1c0&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.affine_ext_y_force" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.affine_flipped">
+<span class="sig-name descname"><span class="pre">affine_flipped</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407ab4f0&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.affine_flipped" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.affine_is_closed">
+<span class="sig-name descname"><span class="pre">affine_is_closed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407ab4c0&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.affine_is_closed" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.affine_mass_matrix">
+<span class="sig-name descname"><span class="pre">affine_mass_matrix</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407ab490&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.affine_mass_matrix" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.affine_mass_xi">
+<span class="sig-name descname"><span class="pre">affine_mass_xi</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407ab520&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.affine_mass_xi" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.allocate_sim_cache">
+<span class="sig-name descname"><span class="pre">allocate_sim_cache</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.allocate_sim_cache" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.append_sim_data">
+<span class="sig-name descname"><span class="pre">append_sim_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">asarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.append_sim_data" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.apply_set_state">
+<span class="sig-name descname"><span class="pre">apply_set_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.apply_set_state" title="Link to this definition">¶</a></dt>
+<dd><p>call apply set state manually mainly for initial scene visualization purpose</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.arap_compression_k">
+<span class="sig-name descname"><span class="pre">arap_compression_k</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda4079e6b0&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.arap_compression_k" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.arap_stretch_k">
+<span class="sig-name descname"><span class="pre">arap_stretch_k</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda4079e680&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.arap_stretch_k" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.bending">
+<span class="sig-name descname"><span class="pre">bending</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda4079e710&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.bending" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.bending_e">
+<span class="sig-name descname"><span class="pre">bending_e</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda4079e770&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.bending_e" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.bending_h">
+<span class="sig-name descname"><span class="pre">bending_h</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda4079e7a0&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.bending_h" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.bending_rest_angle">
+<span class="sig-name descname"><span class="pre">bending_rest_angle</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda4079e740&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.bending_rest_angle" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.bending_stiffness">
+<span class="sig-name descname"><span class="pre">bending_stiffness</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda4079e7d0&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.bending_stiffness" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.body_collision_layer">
+<span class="sig-name descname"><span class="pre">body_collision_layer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407ab3d0&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.body_collision_layer" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.body_enable_self_collision">
+<span class="sig-name descname"><span class="pre">body_enable_self_collision</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407ab370&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.body_enable_self_collision" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.body_env_id">
+<span class="sig-name descname"><span class="pre">body_env_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407ab3a0&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.body_env_id" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.body_is_affine">
+<span class="sig-name descname"><span class="pre">body_is_affine</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407ab340&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.body_is_affine" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.body_q">
+<span class="sig-name descname"><span class="pre">body_q</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407ab670&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.body_q" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.body_qd">
+<span class="sig-name descname"><span class="pre">body_qd</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407ab6a0&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.body_qd" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.check_initial_state_valid">
+<span class="sig-name descname"><span class="pre">check_initial_state_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exclude_self_collision</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.check_initial_state_valid" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.clear_force">
+<span class="sig-name descname"><span class="pre">clear_force</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.clear_force" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.clear_grad">
+<span class="sig-name descname"><span class="pre">clear_grad</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.clear_grad" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.collision_layer_filter">
+<span class="sig-name descname"><span class="pre">collision_layer_filter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407ab400&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.collision_layer_filter" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.collision_map">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">collision_map</span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.collision_map" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.dhat">
+<span class="sig-name descname"><span class="pre">dhat</span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.dhat" title="Link to this definition">¶</a></dt>
+<dd><p>IPC barrier active distance (m)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.dim">
+<span class="sig-name descname"><span class="pre">dim</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.dim" title="Link to this definition">¶</a></dt>
+<dd><p>Dimension of the space, defualt to be 3 for 3D</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.disable_affine_kinematic_constraint">
+<span class="sig-name descname"><span class="pre">disable_affine_kinematic_constraint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TriMeshBodyHandle</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.disable_affine_kinematic_constraint" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.dummy_robot">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dummy_robot</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="robot.html#warp_ipc.robots.Robot" title="warp_ipc.robots.Robot"><span class="pre">Robot</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.dummy_robot" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.dx_div_dv_scale">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dx_div_dv_scale</span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.dx_div_dv_scale" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.dx_div_dv_scale_list">
+<span class="sig-name descname"><span class="pre">dx_div_dv_scale_list</span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.dx_div_dv_scale_list" title="Link to this definition">¶</a></dt>
+<dd><p>for quasi-static, implicit Euler, BDF-2</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.edge">
+<span class="sig-name descname"><span class="pre">edge</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda4079dc60&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.edge" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.edge2body">
+<span class="sig-name descname"><span class="pre">edge2body</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407ab310&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.edge2body" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.edge2env">
+<span class="sig-name descname"><span class="pre">edge2env</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407ab250&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.edge2env" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.edge_area">
+<span class="sig-name descname"><span class="pre">edge_area</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407aaa70&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.edge_area" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.edge_stretching_stiffness">
+<span class="sig-name descname"><span class="pre">edge_stretching_stiffness</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda4079e6e0&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.edge_stretching_stiffness" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.edge_xi">
+<span class="sig-name descname"><span class="pre">edge_xi</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407aaad0&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.edge_xi" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.enable_affine_kinematic_constraint">
+<span class="sig-name descname"><span class="pre">enable_affine_kinematic_constraint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TriMeshBodyHandle</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.enable_affine_kinematic_constraint" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.env_origins">
+<span class="sig-name descname"><span class="pre">env_origins</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407ab640&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.env_origins" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.env_states">
+<span class="sig-name descname"><span class="pre">env_states</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407ab430&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.env_states" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.epsv">
+<span class="sig-name descname"><span class="pre">epsv</span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.epsv" title="Link to this definition">¶</a></dt>
+<dd><p>Friction (m/s)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.face">
+<span class="sig-name descname"><span class="pre">face</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda4079e4d0&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.face" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.face2body">
+<span class="sig-name descname"><span class="pre">face2body</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407ab2e0&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.face2body" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.face2env">
+<span class="sig-name descname"><span class="pre">face2env</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407ab280&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.face2env" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.face_xi">
+<span class="sig-name descname"><span class="pre">face_xi</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407aab00&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.face_xi" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.finalize">
+<span class="sig-name descname"><span class="pre">finalize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.finalize" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.fn_x">
+<span class="sig-name descname"><span class="pre">fn_x</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407aa9e0&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.fn_x" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.ft_x">
+<span class="sig-name descname"><span class="pre">ft_x</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407aaa10&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.ft_x" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.get_affine_body_mesh_from_handle">
+<span class="sig-name descname"><span class="pre">get_affine_body_mesh_from_handle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TriMeshBodyHandle</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Trimesh</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.get_affine_body_mesh_from_handle" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.get_affine_body_meshes_from_handle">
+<span class="sig-name descname"><span class="pre">get_affine_body_meshes_from_handle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handles</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">TriMeshBodyHandle</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Trimesh</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Trimesh</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.get_affine_body_meshes_from_handle" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.get_affine_body_state">
+<span class="sig-name descname"><span class="pre">get_affine_body_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body_handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TriMeshBodyHandle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_numpy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">_ScalarType_co</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">_ScalarType_co</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.get_affine_body_state" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.get_affine_body_state_matrix">
+<span class="sig-name descname"><span class="pre">get_affine_body_state_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body_handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TriMeshBodyHandle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_numpy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">_ScalarType_co</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.get_affine_body_state_matrix" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.get_affine_body_velocity">
+<span class="sig-name descname"><span class="pre">get_affine_body_velocity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body_handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TriMeshBodyHandle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_numpy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">_ScalarType_co</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">_ScalarType_co</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.get_affine_body_velocity" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.get_affine_body_velocity_matrix">
+<span class="sig-name descname"><span class="pre">get_affine_body_velocity_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body_handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TriMeshBodyHandle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_numpy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">_ScalarType_co</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.get_affine_body_velocity_matrix" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.get_affine_body_wp_meshes_from_handle">
+<span class="sig-name descname"><span class="pre">get_affine_body_wp_meshes_from_handle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handles</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">TriMeshBodyHandle</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Mesh</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.get_affine_body_wp_meshes_from_handle" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.get_body_env_id">
+<span class="sig-name descname"><span class="pre">get_body_env_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TriMeshBodyHandle</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.get_body_env_id" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.get_body_face">
+<span class="sig-name descname"><span class="pre">get_body_face</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TriMeshBodyHandle</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.get_body_face" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.get_body_mesh">
+<span class="sig-name descname"><span class="pre">get_body_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TriMeshBodyHandle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.get_body_mesh" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.get_body_nodal_collision_force">
+<span class="sig-name descname"><span class="pre">get_body_nodal_collision_force</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TriMeshBodyHandle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.get_body_nodal_collision_force" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.get_body_nodal_contact_force">
+<span class="sig-name descname"><span class="pre">get_body_nodal_contact_force</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TriMeshBodyHandle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.get_body_nodal_contact_force" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.get_body_nodal_friction_force">
+<span class="sig-name descname"><span class="pre">get_body_nodal_friction_force</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TriMeshBodyHandle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.get_body_nodal_friction_force" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.get_body_resultant_contact_force">
+<span class="sig-name descname"><span class="pre">get_body_resultant_contact_force</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TriMeshBodyHandle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.get_body_resultant_contact_force" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.get_body_target_mesh">
+<span class="sig-name descname"><span class="pre">get_body_target_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TriMeshBodyHandle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.get_body_target_mesh" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.get_body_x">
+<span class="sig-name descname"><span class="pre">get_body_x</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TriMeshBodyHandle</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.get_body_x" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.get_body_x_target">
+<span class="sig-name descname"><span class="pre">get_body_x_target</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TriMeshBodyHandle</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.get_body_x_target" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.get_element_by_handle">
+<span class="sig-name descname"><span class="pre">get_element_by_handle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_numpy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">_ScalarType_co</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">_ScalarType_co</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.get_element_by_handle" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.get_env_pos">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_env_pos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_envs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_spacing</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'cuda:0'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tensor</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.get_env_pos" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.get_environment_states">
+<span class="sig-name descname"><span class="pre">get_environment_states</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.get_environment_states" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.get_joint_value">
+<span class="sig-name descname"><span class="pre">get_joint_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">joint_handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">WorldJointHandle</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.get_joint_value" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.get_scene_mesh">
+<span class="sig-name descname"><span class="pre">get_scene_mesh</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Trimesh</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.get_scene_mesh" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.get_soft_body_from_handle">
+<span class="sig-name descname"><span class="pre">get_soft_body_from_handle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">UnstructuredGrid</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.get_soft_body_from_handle" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.get_soft_body_mesh_from_handle">
+<span class="sig-name descname"><span class="pre">get_soft_body_mesh_from_handle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Trimesh</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.get_soft_body_mesh_from_handle" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.get_soft_body_meshes_from_handle">
+<span class="sig-name descname"><span class="pre">get_soft_body_meshes_from_handle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handles</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">TetMeshBodyHandle</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Trimesh</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Trimesh</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.get_soft_body_meshes_from_handle" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.get_soft_body_pos">
+<span class="sig-name descname"><span class="pre">get_soft_body_pos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body_handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TriMeshBodyHandle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_numpy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">_ScalarType_co</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.get_soft_body_pos" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.get_soft_body_velocity">
+<span class="sig-name descname"><span class="pre">get_soft_body_velocity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body_handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TriMeshBodyHandle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_numpy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">_ScalarType_co</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.get_soft_body_velocity" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.get_soft_nodes_from_idxs">
+<span class="sig-name descname"><span class="pre">get_soft_nodes_from_idxs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idxs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">_ScalarType_co</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.get_soft_nodes_from_idxs" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.get_soft_surf_verts_from_handle">
+<span class="sig-name descname"><span class="pre">get_soft_surf_verts_from_handle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TriMeshBodyHandle</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">_ScalarType_co</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.get_soft_surf_verts_from_handle" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.get_soft_verts_from_handle">
+<span class="sig-name descname"><span class="pre">get_soft_verts_from_handle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TriMeshBodyHandle</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">_ScalarType_co</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.get_soft_verts_from_handle" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.gravity">
+<span class="sig-name descname"><span class="pre">gravity</span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.gravity" title="Link to this definition">¶</a></dt>
+<dd><p>Gravity vector (m/s^2)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.half_space_mu">
+<span class="sig-name descname"><span class="pre">half_space_mu</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407ab610&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.half_space_mu" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.half_space_n">
+<span class="sig-name descname"><span class="pre">half_space_n</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407ab5b0&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.half_space_n" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.half_space_o">
+<span class="sig-name descname"><span class="pre">half_space_o</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407ab5e0&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.half_space_o" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.handle_EE">
+<span class="sig-name descname"><span class="pre">handle_EE</span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.handle_EE" title="Link to this definition">¶</a></dt>
+<dd><p>Handling edge-edge interpenetration; disabling makes the simulation faster.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.hat_x">
+<span class="sig-name descname"><span class="pre">hat_x</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407aa950&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.hat_x" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.hat_y">
+<span class="sig-name descname"><span class="pre">hat_y</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407aabc0&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.hat_y" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.hess_affine_diag">
+<span class="sig-name descname"><span class="pre">hess_affine_diag</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">COOMatrix3x3</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.hess_affine_diag" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.hess_barrier">
+<span class="sig-name descname"><span class="pre">hess_barrier</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">COOMatrix3x3</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.hess_barrier" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.hess_friction">
+<span class="sig-name descname"><span class="pre">hess_friction</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">COOMatrix3x3</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.hess_friction" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.hess_soft_bending_elastic">
+<span class="sig-name descname"><span class="pre">hess_soft_bending_elastic</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">COOMatrix3x3</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.hess_soft_bending_elastic" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.hess_soft_diag">
+<span class="sig-name descname"><span class="pre">hess_soft_diag</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">COOMatrix3x3</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.hess_soft_diag" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.hess_soft_shell_elastic">
+<span class="sig-name descname"><span class="pre">hess_soft_shell_elastic</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">COOMatrix3x3</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.hess_soft_shell_elastic" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.hess_soft_vol_elastic">
+<span class="sig-name descname"><span class="pre">hess_soft_vol_elastic</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">COOMatrix3x3</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.hess_soft_vol_elastic" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.hess_stitch">
+<span class="sig-name descname"><span class="pre">hess_stitch</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">COOMatrix3x3</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.hess_stitch" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.init">
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.init" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.initialize_hat_x_y">
+<span class="sig-name descname"><span class="pre">initialize_hat_x_y</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.initialize_hat_x_y" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.initialize_tilde_x_y">
+<span class="sig-name descname"><span class="pre">initialize_tilde_x_y</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.initialize_tilde_x_y" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.initialize_tilde_x_y_adjoint">
+<span class="sig-name descname"><span class="pre">initialize_tilde_x_y_adjoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.initialize_tilde_x_y_adjoint" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.k_elasticity_damping">
+<span class="sig-name descname"><span class="pre">k_elasticity_damping</span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.k_elasticity_damping" title="Link to this definition">¶</a></dt>
+<dd><p>Elasticity damping coefficient (Pa.s/m)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.kappa">
+<span class="sig-name descname"><span class="pre">kappa</span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.kappa" title="Link to this definition">¶</a></dt>
+<dd><p>IPC barrier stiffness (Pa)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.mass_body">
+<span class="sig-name descname"><span class="pre">mass_body</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407aab60&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.mass_body" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.merge_sys_grad">
+<span class="sig-name descname"><span class="pre">merge_sys_grad</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.merge_sys_grad" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.n_affine_dofs">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_affine_dofs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.n_affine_dofs" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.n_dofs">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_dofs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.n_dofs" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.negate">
+<span class="sig-name descname"><span class="pre">negate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gradient</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.negate" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.negate_vec12d">
+<span class="sig-name descname"><span class="pre">negate_vec12d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gradient</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.negate_vec12d" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.negate_vec3d">
+<span class="sig-name descname"><span class="pre">negate_vec3d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gradient</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.negate_vec3d" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.node2body">
+<span class="sig-name descname"><span class="pre">node2body</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407ab2b0&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.node2body" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.node2env">
+<span class="sig-name descname"><span class="pre">node2env</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407ab220&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.node2env" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.node_area">
+<span class="sig-name descname"><span class="pre">node_area</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407aaa40&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.node_area" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.node_xi">
+<span class="sig-name descname"><span class="pre">node_xi</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407aaaa0&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.node_xi" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.num_HS">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">num_HS</span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.num_HS" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.num_body">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">num_body</span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.num_body" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.num_cloth_edges">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">num_cloth_edges</span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.num_cloth_edges" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.num_edge">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">num_edge</span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.num_edge" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.num_face">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">num_face</span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.num_face" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.num_surf_verts">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">num_surf_verts</span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.num_surf_verts" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.num_x">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">num_x</span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.num_x" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.particle_q">
+<span class="sig-name descname"><span class="pre">particle_q</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cdafa0df370&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.particle_q" title="Link to this definition">¶</a></dt>
+<dd><p>Node positions</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.particle_qd">
+<span class="sig-name descname"><span class="pre">particle_qd</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407aa980&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.particle_qd" title="Link to this definition">¶</a></dt>
+<dd><p>Node velocities</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.particle_qdd">
+<span class="sig-name descname"><span class="pre">particle_qdd</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407aa9b0&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.particle_qdd" title="Link to this definition">¶</a></dt>
+<dd><p>Node accelerations</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.particle_radius">
+<span class="sig-name descname"><span class="pre">particle_radius</span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.particle_radius" title="Link to this definition">¶</a></dt>
+<dd><p>Ground plane parameters for warp.sim visualization</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.requires_grad">
+<span class="sig-name descname"><span class="pre">requires_grad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.requires_grad" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.reset_environement">
+<span class="sig-name descname"><span class="pre">reset_environement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.reset_environement" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.safeguard_direction_x">
+<span class="sig-name descname"><span class="pre">safeguard_direction_x</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction_x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.safeguard_direction_x" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.save_sim_x_to_xt">
+<span class="sig-name descname"><span class="pre">save_sim_x_to_xt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.save_sim_x_to_xt" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.set_affine_external_force_field">
+<span class="sig-name descname"><span class="pre">set_affine_external_force_field</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TriMeshBodyHandle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_force_acceleration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">_ScalarType_co</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.set_affine_external_force_field" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.set_affine_external_torque">
+<span class="sig-name descname"><span class="pre">set_affine_external_torque</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TriMeshBodyHandle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">torque</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">_ScalarType_co</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tensor</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">tensor([0.,</span> <span class="pre">0.,</span> <span class="pre">0.],</span> <span class="pre">dtype=torch.float64)</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.set_affine_external_torque" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.set_affine_external_wrench">
+<span class="sig-name descname"><span class="pre">set_affine_external_wrench</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TriMeshBodyHandle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_force_acceleration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">_ScalarType_co</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">torque</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">_ScalarType_co</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tensor</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">tensor([0.,</span> <span class="pre">0.,</span> <span class="pre">0.],</span> <span class="pre">dtype=torch.float64)</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.set_affine_external_wrench" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.set_affine_kinematic_target">
+<span class="sig-name descname"><span class="pre">set_affine_kinematic_target</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TriMeshBodyHandle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_rot_mat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">_ScalarType_co</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_translation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">_ScalarType_co</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.set_affine_kinematic_target" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.set_affine_state">
+<span class="sig-name descname"><span class="pre">set_affine_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TriMeshBodyHandle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">_ScalarType_co</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">translation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">_ScalarType_co</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.set_affine_state" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.set_body_collision_layer">
+<span class="sig-name descname"><span class="pre">set_body_collision_layer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TriMeshBodyHandle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.set_body_collision_layer" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.set_body_env_id">
+<span class="sig-name descname"><span class="pre">set_body_env_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TriMeshBodyHandle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.set_body_env_id" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.set_body_self_collision">
+<span class="sig-name descname"><span class="pre">set_body_self_collision</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TriMeshBodyHandle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_enable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.set_body_self_collision" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.set_collision_layer_filter">
+<span class="sig-name descname"><span class="pre">set_collision_layer_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_j</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_enable_collision</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.set_collision_layer_filter" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.set_kinematic_stiffness">
+<span class="sig-name descname"><span class="pre">set_kinematic_stiffness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">weight</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.set_kinematic_stiffness" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.set_robot_state">
+<span class="sig-name descname"><span class="pre">set_robot_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">joint_params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root_tf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">_ScalarType_co</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">array([[1.,</span> <span class="pre">0.,</span> <span class="pre">0.,</span> <span class="pre">0.],</span> <span class="pre">[0.,</span> <span class="pre">1.,</span> <span class="pre">0.,</span> <span class="pre">0.],</span> <span class="pre">[0.,</span> <span class="pre">0.,</span> <span class="pre">1.,</span> <span class="pre">0.],</span> <span class="pre">[0.,</span> <span class="pre">0.,</span> <span class="pre">0.,</span> <span class="pre">1.]])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.set_robot_state" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.set_soft_kinematic_constraint">
+<span class="sig-name descname"><span class="pre">set_soft_kinematic_constraint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TriMeshBodyHandle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verts_mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">_ScalarType_co</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.set_soft_kinematic_constraint" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.set_soft_kinematic_target">
+<span class="sig-name descname"><span class="pre">set_soft_kinematic_target</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TriMeshBodyHandle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_verts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">_ScalarType_co</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.set_soft_kinematic_target" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.set_soft_state">
+<span class="sig-name descname"><span class="pre">set_soft_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TetMeshBodyHandle</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TriMeshBodyHandle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">_ScalarType_co</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.set_soft_state" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.shape_count_sim">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">shape_count_sim</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.shape_count_sim" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.soft_bending_connectivity_num">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">soft_bending_connectivity_num</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.soft_bending_connectivity_num" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.soft_kinematic_constraint">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">soft_kinematic_constraint</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.soft_kinematic_constraint" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.soft_kinematic_target">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">soft_kinematic_target</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.soft_kinematic_target" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.soft_shell_E">
+<span class="sig-name descname"><span class="pre">soft_shell_E</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda4079e530&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.soft_shell_E" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.soft_shell_IB">
+<span class="sig-name descname"><span class="pre">soft_shell_IB</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda4079e500&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.soft_shell_IB" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.soft_shell_elastic_connectivity_num">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">soft_shell_elastic_connectivity_num</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.soft_shell_elastic_connectivity_num" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.soft_shell_elastic_connectivity_offset">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">soft_shell_elastic_connectivity_offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.soft_shell_elastic_connectivity_offset" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.soft_shell_elem_vol">
+<span class="sig-name descname"><span class="pre">soft_shell_elem_vol</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda4079e590&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.soft_shell_elem_vol" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.soft_shell_nu">
+<span class="sig-name descname"><span class="pre">soft_shell_nu</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda4079e560&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.soft_shell_nu" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.soft_shell_tris_num">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">soft_shell_tris_num</span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.soft_shell_tris_num" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.soft_tet_E">
+<span class="sig-name descname"><span class="pre">soft_tet_E</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda4079e5c0&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.soft_tet_E" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.soft_tet_IB">
+<span class="sig-name descname"><span class="pre">soft_tet_IB</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda4079e620&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.soft_tet_IB" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.soft_tet_elem_vol">
+<span class="sig-name descname"><span class="pre">soft_tet_elem_vol</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda4079e650&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.soft_tet_elem_vol" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.soft_tet_nu">
+<span class="sig-name descname"><span class="pre">soft_tet_nu</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda4079e5f0&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.soft_tet_nu" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.soft_tilde_x">
+<span class="sig-name descname"><span class="pre">soft_tilde_x</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407aab90&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.soft_tilde_x" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.soft_verts_mass">
+<span class="sig-name descname"><span class="pre">soft_verts_mass</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407ab580&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.soft_verts_mass" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.soft_verts_num">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">soft_verts_num</span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.soft_verts_num" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.soft_vol_body_offset">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">soft_vol_body_offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.soft_vol_body_offset" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.soft_vol_elastic_connectivity_num">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">soft_vol_elastic_connectivity_num</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.soft_vol_elastic_connectivity_num" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.soft_vol_tets_num">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">soft_vol_tets_num</span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.soft_vol_tets_num" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.state">
+<span class="sig-name descname"><span class="pre">state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">requires_grad</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">State</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.state" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a state object for the model</p>
+<p>The returned state will be initialized with the initial configuration given in
+the model description.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>requires_grad</strong> (<em>bool</em>) – Manual overwrite whether the state variables should have <cite>requires_grad</cite> enabled (defaults to <cite>None</cite> to use the model’s setting <a class="reference internal" href="#warp_ipc.sim_model.ASRModel.requires_grad" title="warp_ipc.sim_model.ASRModel.requires_grad"><code class="xref py py-attr docutils literal notranslate"><span class="pre">requires_grad</span></code></a>)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The state object</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>State</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.step">
+<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.step" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.stitch">
+<span class="sig-name descname"><span class="pre">stitch</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407aa8c0&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.stitch" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.stitch_map">
+<span class="sig-name descname"><span class="pre">stitch_map</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407aa8f0&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.stitch_map" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.stitch_num_per_x">
+<span class="sig-name descname"><span class="pre">stitch_num_per_x</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407aa920&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.stitch_num_per_x" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.surf_vi">
+<span class="sig-name descname"><span class="pre">surf_vi</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda40772020&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.surf_vi" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.sys_to_x">
+<span class="sig-name descname"><span class="pre">sys_to_x</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sys_direction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction_x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.sys_to_x" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.tac_handles">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tac_handles</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">TetMeshBodyHandle</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.tac_handles" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.tet_envs">
+<span class="sig-name descname"><span class="pre">tet_envs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407ab460&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.tet_envs" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.tets">
+<span class="sig-name descname"><span class="pre">tets</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda4079e4a0&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.tets" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.tilde_y">
+<span class="sig-name descname"><span class="pre">tilde_y</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407ab040&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.tilde_y" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.update_contact_force">
+<span class="sig-name descname"><span class="pre">update_contact_force</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.update_contact_force" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.v_y">
+<span class="sig-name descname"><span class="pre">v_y</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407aada0&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.v_y" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.vol_body">
+<span class="sig-name descname"><span class="pre">vol_body</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407aab30&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.vol_body" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.write_scene">
+<span class="sig-name descname"><span class="pre">write_scene</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divide</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">double_face</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.write_scene" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.write_target_scene">
+<span class="sig-name descname"><span class="pre">write_target_scene</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.write_target_scene" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.x_target">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">x_target</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.x_target" title="Link to this definition">¶</a></dt>
+<dd><p>update rigid targets</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>TODO</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.xt">
+<span class="sig-name descname"><span class="pre">xt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda4079dc30&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.xt" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.y">
+<span class="sig-name descname"><span class="pre">y</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">&lt;warp.types.array</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7cda407aabf0&gt;</span></em><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.y" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="warp_ipc.sim_model.ASRModel.y_to_x">
+<span class="sig-name descname"><span class="pre">y_to_x</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction_x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#warp_ipc.sim_model.ASRModel.y_to_x" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="integrator.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">IPC Integrator</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="robot.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Robot Models</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, the Taccel Team
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link fa-brands fa-solid fa-github fa-2x" href="https://github.com/Taccel-Simulator/Taccel" aria-label="GitHub"></a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">ASR Model APIs</a><ul>
+<li><a class="reference internal" href="#warp_ipc.sim_model.ASRModel"><code class="docutils literal notranslate"><span class="pre">ASRModel</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=4ebf8126"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    </body>
+</html>

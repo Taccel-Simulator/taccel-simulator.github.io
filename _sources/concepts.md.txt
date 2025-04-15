@@ -1,0 +1,32 @@
+# Concepts
+
+## Vision-Based Tactile Sensors (VBTS)
+
+Vision-Based Tactile Sensors (VBTS) are devices that capture tactile information using optical methods. Typically, they employ a camera to record deformation patterns on a soft, elastic gel pad when it comes into contact with objects. This approach enables high spatial resolution and cost-effective tactile sensing compared to traditional sensor arrays.
+
+### Simulating VBTS: Why It's Hard?
+
+Simulating VBTS is challenging because the sensors’ performance hinges on accurately modeling the complex behavior of soft materials. The gel pads exhibit non-linear hyperelastic deformations, and their interactions with objects involve intricate contact dynamics. In simulation, ensuring realistic deformation, maintaining inversion-free and intersection-free contact solutions, and generating authentic visual outputs (like depth maps and RGB signals) require advanced numerical techniques and high computational efficiency.
+
+## Taccel
+
+![Infra](_static/infra.svg)
+
+The infrastructure of Taccel and the Warp-IPC is shown above.
+
+
+Taccel is a high-performance physics simulator developed to enable realistic simulation of robots integrated with vision-based tactile sensors. It is develop with the joint efforts from [PKU CoRe Lab](https://pku.ai/) and [UCLA AIVC Lab](https://www.math.ucla.edu/aivc/).
+
+Taccel is built upon Warp-IPC, and extends beyond by integrating advanced tactile signal simulation and handy utilities to enable realistic and massively parallel simulation of vision-based tactile sensors for diverse robotic applications.
+
+Taccel is develop to provide key characteristics for tactile robotics research:
+
+- **Precision:** Taccel accurately models both rigid robotic components and the soft, deformable gel pads of VBTS using advanced simulation techniques. The use of IPC ensures that contact interactions are handled without interpenetration or inversion, while ABD efficiently simulates the dynamics of stiff bodies.
+- **Scalability:** Designed for large-scale experiments, Taccel can simulate thousands of parallel environments (over 4096 on high-end GPUs) while achieving simulation speeds significantly faster than real time.
+- **Flexibility:** The simulator supports diverse robotic configurations and sensor setups via user-friendly APIs, allowing seamless integration with URDF-based robot models and custom sensor configurations.
+
+Taccel’s integration of precise physics simulation with high computational efficiency opens up new possibilities in tactile robotics research. It allows researchers to generate large-scale synthetic tactile datasets with realistic contact dynamics, facilitating sim-to-real transfer for learning-based approaches. This means that complex tactile interactions can be modeled accurately and quickly, enabling rapid prototyping and validation of new robotic systems before physical implementation.
+
+## Warp-IPC
+
+Warp-IPC is a unified physics simulation framework that underpins Taccel, developed in NVIDIA Warp by [UCLA AIVC Lab](https://www.math.ucla.edu/aivc/). It uses a warp-based approach to combine Affine Body Dynamics (ABD) with Incremental Potential Contact (IPC), delivering robust contact resolution and efficient soft-body dynamics simulation. This integration is key to handling the complex contact interactions in VBTS, ensuring that simulations are both fast and physically accurate.
