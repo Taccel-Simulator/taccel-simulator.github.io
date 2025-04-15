@@ -27,7 +27,6 @@ Taccel: Scaling Up Vision-based Tactile Robotics via High-performance GPU Simula
 [📄 `Paper <https://taccel-simulator.github.io/assets/taccel-paper.pdf>`__]
 [📘 `Docs <https://taccel-simulator.github.io>`__]
 [🛠️ `Code <https://github.com/Taccel-Simulator/Taccel>`__]
-[🗂️ `Dataset (Coming Soon) <.>`__]
 
 
 .. image:: _static/overview.png
