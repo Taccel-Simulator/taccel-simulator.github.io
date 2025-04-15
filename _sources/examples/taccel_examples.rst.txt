@@ -27,6 +27,8 @@ Grasping Deformable Object
 
 We will once again demonstrate the deformable object grasping example (previously shown in the Warp-IPC examples), but with the robotic hand integrated with 3 tactile sensers at the tips. This is specified by the :code:`--tactile` flag:
 
+Note that this tasks shows an example of using Y-up coordinate.
+
 .. code-block:: shell
 
     python -m examples.grasp_soft_teddy --num_envs 2 --tactile --viz
@@ -51,12 +53,19 @@ To run the Tac-Man examples, run the script:
 
     python -m examples.tac_man --joint_type JOINT_TYPE --seed SEED
 
-Available `JOINT_TYPE` options:
+Available :code:`JOINT_TYPE` options:
 
 * :code:`revolute`: Revolute joint.
 * :code:`prismatic`: Prismatic joint.
 * :code:`helical`: A bolt-and-nut set.
 
+Note that the tactile signals will be displayed via an OpenCV window. When running on a headless server, you will run into the error:
+
+.. code-block:: shell
+
+    pyglet.display.xlib.NoSuchDisplayException: Cannot connect to "None"
+
+This could be solved by running headlessly, specified by the :code:`--headless` flag.
 
 .. raw:: html
 

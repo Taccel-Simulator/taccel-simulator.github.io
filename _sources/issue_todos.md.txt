@@ -32,3 +32,5 @@ class Module:
                 break
     # ...
 ```
+
+We are actively working to have the directly loading-from-PTX supported natively by NVIDIA warp. Stay tuned!

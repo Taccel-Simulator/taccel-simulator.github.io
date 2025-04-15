@@ -288,6 +288,7 @@
 <section id="grasping-deformable-object">
 <h2>Grasping Deformable Object<a class="headerlink" href="#grasping-deformable-object" title="Link to this heading">¶</a></h2>
 <p>We will once again demonstrate the deformable object grasping example (previously shown in the Warp-IPC examples), but with the robotic hand integrated with 3 tactile sensers at the tips. This is specified by the <code class="code docutils literal notranslate"><span class="pre">--tactile</span></code> flag:</p>
+<p>Note that this tasks shows an example of using Y-up coordinate.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>examples.grasp_soft_teddy<span class="w"> </span>--num_envs<span class="w"> </span><span class="m">2</span><span class="w"> </span>--tactile<span class="w"> </span>--viz
 </pre></div>
 </div>
@@ -300,12 +301,17 @@
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>examples.tac_man<span class="w"> </span>--joint_type<span class="w"> </span>JOINT_TYPE<span class="w"> </span>--seed<span class="w"> </span>SEED
 </pre></div>
 </div>
-<p>Available <cite>JOINT_TYPE</cite> options:</p>
+<p>Available <code class="code docutils literal notranslate"><span class="pre">JOINT_TYPE</span></code> options:</p>
 <ul class="simple">
 <li><p><code class="code docutils literal notranslate"><span class="pre">revolute</span></code>: Revolute joint.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">prismatic</span></code>: Prismatic joint.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">helical</span></code>: A bolt-and-nut set.</p></li>
 </ul>
+<p>Note that the tactile signals will be displayed via an OpenCV window. When running on a headless server, you will run into the error:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pyglet.display.xlib.NoSuchDisplayException:<span class="w"> </span>Cannot<span class="w"> </span>connect<span class="w"> </span>to<span class="w"> </span><span class="s2">&quot;None&quot;</span>
+</pre></div>
+</div>
+<p>This could be solved by running headlessly, specified by the <code class="code docutils literal notranslate"><span class="pre">--headless</span></code> flag.</p>
 <video width="100%" height="100%" autoplay loop muted playsinline>
     <source src="../_static/taccel_tacman.mp4" type="video/mp4">
 </video></section>

@@ -8,6 +8,8 @@ Deformable Object Grasping
 
 We provide a deformable object grasping example, where a RobotiQ-3Finger robot at the tips grasps a soft teddy bear on the ground. The implementation is parallelized, so you can run multiple environments by :code:`NUM_ENVS` at the same time:
 
+Note that this tasks shows an example of using Y-up coordinate.
+
 .. code-block:: shell
 
     python -m examples.grasp_soft_teddy --num_envs NUM_ENVS
