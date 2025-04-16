@@ -24,21 +24,34 @@ Taccel: Scaling Up Vision-based Tactile Robotics via High-performance GPU Simula
 :sup:`*` Equal Contributor  
 :sup:`†` Corresponding Author 
 
-[📄 Paper (Coming soon)]
+[📄 `Paper <https://taccel-simulator.github.io/assets/taccel-paper.pdf>`__]
 [📘 `Docs <https://taccel-simulator.github.io>`__]
 [🛠️ `Code <https://github.com/Taccel-Simulator/Taccel>`__]
-[📄 Dataset (Coming soon)]
 
+
+.. raw:: html
+
+   <div style="width: 100%; position: relative; padding-bottom: 56.25%;">
+   <iframe
+        src="https://player.vimeo.com/video/1075961685"
+        frameborder="0"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowfullscreen=""
+        title="Taccel"
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+      ></iframe>
+   </div>
+
+
+Taccel is a high-performance simulation platform for vision-based tactile sensors and robots.
 
 .. image:: _static/overview.png
    :width: 100%
    :align: center
    :alt: Taccel Infrastructure
 
-
-Taccel is a high-performance simulation platform for vision-based tactile sensors and robots.
-
 Taccel integrates IPC and ABD to model robots, tactile sensors, and objects with both accuracy and unprecedented speed, simulating precise physics, realistic tactile signals, and flexible robot-sensor configurations through user-friendly APIs.
+
 
 .. raw:: html
 
