@@ -17,16 +17,17 @@ Taccel: Scaling Up Vision-based Tactile Robotics via High-performance GPU Simula
 `Yixin Zhu <https://yzhu.io>`__\ :sup:`1 †`,
 `Siyuan Huang <https://siyuanhuang.com>`__\ :sup:`2 †`
 
-:sup:`1` Institute for AI, PKU  
-:sup:`2` State Key Lab of General AI, BIGAI  
-:sup:`3` AIVC Lab, UCLA  
+:sup:`1` Institute for AI, PKU
+:sup:`2` State Key Lab of General AI, BIGAI
+:sup:`3` AIVC Lab, UCLA
 
-:sup:`*` Equal Contributor  
-:sup:`†` Corresponding Author 
+:sup:`*` Equal Contributor
+:sup:`†` Corresponding Author
 
 [📄 `Paper <https://taccel-simulator.github.io/assets/taccel-paper.pdf>`__]
 [📘 `Docs <https://taccel-simulator.github.io>`__]
 [🛠️ `Code <https://github.com/Taccel-Simulator/Taccel>`__]
+[📄 Dataset (Coming soon)]
 
 
 .. raw:: html
@@ -76,7 +77,12 @@ If you use Taccel in your research, please use the following citation:
 
 .. code:: bibtex
 
-   TBD
+   @misc{li2025taccel,
+      title={Taccel: Scaling Up Vision-based Tactile Robotics via High-performance GPU Simulation}, 
+      author={Li, Yuyang and Du, Wenxin and Yu, Chang and Li, Puhao and Zhao, Zihang and Liu, Tengyu and Jiang, Chenfanfu and Zhu, Yixin and Huang, Siyuan},
+      journal={arXiv preprint arXiv:2504.12908},
+      year={2025}
+   }
 
 Index
 -----
