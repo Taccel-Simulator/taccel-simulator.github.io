@@ -213,7 +213,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../modules/robot.html">Robot Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/model.html">ASR Model APIs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/integrator.html">IPC Integrator</a></li>
-<li class="toctree-l1"><a class="reference internal" href="warp_ipc_examples.html">Warp-IPC Examples</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Taccel References</span></p>
 <ul class="current">
@@ -287,9 +286,9 @@
 </video><div style="clear: both;"></div></section>
 <section id="grasping-deformable-object">
 <h2>Grasping Deformable Object<a class="headerlink" href="#grasping-deformable-object" title="Link to this heading">¶</a></h2>
-<p>We will once again demonstrate the deformable object grasping example (previously shown in the Warp-IPC examples), but with the robotic hand integrated with 3 tactile sensers at the tips. This is specified by the <code class="code docutils literal notranslate"><span class="pre">--tactile</span></code> flag:</p>
+<p>We provide a deformable object grasping example, where a RobotiQ-3Finger robot, integrated with 3 tactile sensers at the tips, grasps a soft teddy bear on the ground. The implementation is parallelized, so you can run multiple environments by <code class="code docutils literal notranslate"><span class="pre">NUM_ENVS</span></code> at the same time:</p>
 <p>Note that this tasks shows an example of using Y-up coordinate.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>examples.grasp_soft_teddy<span class="w"> </span>--num_envs<span class="w"> </span><span class="m">2</span><span class="w"> </span>--tactile<span class="w"> </span>--viz
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>examples.grasp_soft_teddy<span class="w"> </span>--num_envs<span class="w"> </span><span class="m">2</span><span class="w"> </span>--viz
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="../_images/taccel_soft.png"><img alt="Grasping Deformable Object Example" class="align-left" src="../_images/taccel_soft.png" style="width: 50%;" />
@@ -314,16 +313,8 @@
 <p>This could be solved by running headlessly, specified by the <code class="code docutils literal notranslate"><span class="pre">--headless</span></code> flag.</p>
 <video width="100%" height="100%" autoplay loop muted playsinline>
     <source src="../_static/taccel_tacman.mp4" type="video/mp4">
-</video></section>
-<section id="mahjong">
-<h2>Mahjong<a class="headerlink" href="#mahjong" title="Link to this heading">¶</a></h2>
-<p>To run the Mahjong example, run the script:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>examples.mahjong
-</pre></div>
-</div>
-<video width="40%" height="100%" autoplay loop muted playsinline>
-    <source src="../_static/mahjong.mp4" type="video/mp4">
-</video></section>
+</video><p>Note that the OpenGL visualization is still under active development, so the renderer should show nothing in this demo.</p>
+</section>
 </section>
 
         </article>
@@ -388,7 +379,6 @@
 <li><a class="reference internal" href="#peg-insertion">Peg-Insertion</a></li>
 <li><a class="reference internal" href="#grasping-deformable-object">Grasping Deformable Object</a></li>
 <li><a class="reference internal" href="#tac-man-tactile-informed-manipulation">Tac-Man: Tactile-informed Manipulation</a></li>
-<li><a class="reference internal" href="#mahjong">Mahjong</a></li>
 </ul>
 </li>
 </ul>

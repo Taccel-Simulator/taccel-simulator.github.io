@@ -25,13 +25,13 @@ The peg-insertion example migrated from the `Experimental Release of SAPIEN-IPC 
 Grasping Deformable Object
 -----------------------------------------------
 
-We will once again demonstrate the deformable object grasping example (previously shown in the Warp-IPC examples), but with the robotic hand integrated with 3 tactile sensers at the tips. This is specified by the :code:`--tactile` flag:
+We provide a deformable object grasping example, where a RobotiQ-3Finger robot, integrated with 3 tactile sensers at the tips, grasps a soft teddy bear on the ground. The implementation is parallelized, so you can run multiple environments by :code:`NUM_ENVS` at the same time:
 
 Note that this tasks shows an example of using Y-up coordinate.
 
 .. code-block:: shell
 
-    python -m examples.grasp_soft_teddy --num_envs 2 --tactile --viz
+    python -m examples.grasp_soft_teddy --num_envs 2 --viz
 
 .. image:: ../_static/taccel_soft.png
    :width: 50%
@@ -73,19 +73,20 @@ This could be solved by running headlessly, specified by the :code:`--headless` 
         <source src="../_static/taccel_tacman.mp4" type="video/mp4">
     </video>
 
+Note that the OpenGL visualization is still under active development, so the renderer should show nothing in this demo.
 
-Mahjong
--------
+.. Mahjong
+.. -------
 
-To run the Mahjong example, run the script:
+.. To run the Mahjong example, run the script:
 
-.. code-block:: shell
+.. .. code-block:: shell
 
-    python -m examples.mahjong
+..     python -m examples.mahjong
 
 
-.. raw:: html
+.. .. raw:: html
 
-    <video width="40%" height="100%" autoplay loop muted playsinline>
-        <source src="../_static/mahjong.mp4" type="video/mp4">
-    </video>
+..     <video width="40%" height="100%" autoplay loop muted playsinline>
+..         <source src="../_static/mahjong.mp4" type="video/mp4">
+..     </video>
