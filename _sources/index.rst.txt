@@ -105,7 +105,8 @@ Index
    modules/robot
    modules/model
    modules/integrator
-   .. examples/warp_ipc_examples.rst
+   modules/handle
+   modules/envvar
 
 .. toctree::
    :maxdepth: 3

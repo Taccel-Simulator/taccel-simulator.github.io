@@ -1,0 +1,24 @@
+Environment Variables
+---------------------
+
+The following environment variables can be used to customize behavior:
+
+- :envvar:`WARP_IPC_LOG_LEVEL`  
+  Controls the logging level.  
+  Default: ``INFO`` (`1`)  
+  Options: ``DEBUG`` (`0`), ``INFO`` (`1`), ``IMPORTANT_INFO`` (`2`), ``WARN`` (`3`), ``VITAL_INFO`` (`4`), ``ERROR`` (`5`), ``NONE`` (`999`)
+
+- :envvar:`WARP_IPC_DEBUG`  
+  Enables additional internal assertions and debug checks.  
+  Default: ``0`` (disabled)  
+  Set to ``1`` to enable.
+
+- :envvar:`TACCEL_PTX_DIR`  
+  Overrides the default kernel cache directory used by Warp.  
+  Default: ``"./ptx/ptx_86"``  
+  Used to store precompiled PTX files.
+
+- :envvar:`TACCEL_PTX_ARCH`  
+  Sets the target CUDA PTX architecture.  
+  Default: ``86``  
+  Must be an integer (e.g., ``86`` for SM_86 architecture). Invalid values will raise a `ValueError`.

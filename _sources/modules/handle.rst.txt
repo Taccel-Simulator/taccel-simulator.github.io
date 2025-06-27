@@ -1,0 +1,41 @@
+:tocdepth: 2
+
+Simulation Handles
+======================
+
+This page documents the core handle classes used in the simulation system, including both object handles (e.g., soft bodies and rigid bodies) and constraint handles (e.g., joints). These handles encapsulate metadata, indexing information, and linkage between simulated entities, and serve as essential interfaces for constructing and managing simulation scenes.
+
+.. autoclass:: warp_ipc.utils.constants.BodyType
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. autoclass:: warp_ipc.body_handle.TriMeshBodyHandle
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. autoclass:: warp_ipc.body_handle.TetMeshBodyHandle
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. autoclass:: warp_ipc.body_handle.BodyHandle
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. autoclass:: warp_ipc.joint_handle.JointType
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. autoclass:: warp_ipc.joint_handle.WorldJointHandle
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. autoclass:: warp_ipc.joint_handle.LocalJointHandle
+   :members:
+   :undoc-members:
+   :show-inheritance:

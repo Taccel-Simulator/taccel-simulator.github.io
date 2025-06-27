@@ -3,6 +3,16 @@
 Robot Models
 ==============================
 
+.. autoclass:: warp_ipc.robots.Link
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. autoclass:: warp_ipc.robots.Kinematic
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 .. autoclass:: warp_ipc.robots.Robot
    :members:
    :undoc-members:

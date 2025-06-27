@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Tactile Robot Models" href="../modules/tactile_robot.html" /><link rel="prev" title="IPC Integrator" href="../modules/integrator.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Tactile Robot Models" href="tactile_robot.html" /><link rel="prev" title="Simulation Handles" href="handle.html" />
 
     <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
-        <title>Warp-IPC Examples - Taccel - Docs</title>
+        <title>Environment Variables - Taccel - Docs</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -183,7 +183,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -210,17 +210,18 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Warp-IPC References</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../modules/robot.html">Robot Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/model.html">ASR Model APIs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/integrator.html">IPC Integrator</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Warp-IPC Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="robot.html">Robot Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.html">ASR Model APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integrator.html">IPC Integrator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="handle.html">Simulation Handles</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Environment Variables</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Taccel References</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../modules/tactile_robot.html">Tactile Robot Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/sensor.html">VBTS Config</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/taccel.html">Taccel APIs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="taccel_examples.html">Taccel Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tactile_robot.html">Tactile Robot Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sensor.html">VBTS Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="taccel.html">Taccel APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/taccel_examples.html">Taccel Examples</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tools</span></p>
 <ul>
@@ -250,12 +251,12 @@
         </a>
         <div class="content-icon-container">
           <div class="view-this-page">
-  <a class="muted-link" href="https://github.com/Taccel-Simulator/Taccel/blob/main/docs/examples/warp_ipc_examples.rst?plain=true" title="View this page">
+  <a class="muted-link" href="https://github.com/Taccel-Simulator/Taccel/blob/main/docs/modules/envvar.rst?plain=true" title="View this page">
     <svg><use href="#svg-eye"></use></svg>
     <span class="visually-hidden">View this page</span>
   </a>
 </div><div class="edit-this-page">
-  <a class="muted-link" href="https://github.com/Taccel-Simulator/Taccel/edit/main/docs/examples/warp_ipc_examples.rst" title="Edit this page">
+  <a class="muted-link" href="https://github.com/Taccel-Simulator/Taccel/edit/main/docs/modules/envvar.rst" title="Edit this page">
     <svg><use href="#svg-pencil"></use></svg>
     <span class="visually-hidden">Edit this page</span>
   </a>
@@ -268,22 +269,33 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="warp-ipc-examples">
-<h1>Warp-IPC Examples<a class="headerlink" href="#warp-ipc-examples" title="Link to this heading">¶</a></h1>
-<section id="deformable-object-grasping">
-<h2>Deformable Object Grasping<a class="headerlink" href="#deformable-object-grasping" title="Link to this heading">¶</a></h2>
-<p>We provide a deformable object grasping example, where a RobotiQ-3Finger robot at the tips grasps a soft teddy bear on the ground. The implementation is parallelized, so you can run multiple environments by <code class="code docutils literal notranslate"><span class="pre">NUM_ENVS</span></code> at the same time:</p>
-<p>Note that this tasks shows an example of using Y-up coordinate.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>examples.grasp_soft_teddy<span class="w"> </span>--num_envs<span class="w"> </span>NUM_ENVS
-</pre></div>
-</div>
-</section>
+          <section id="environment-variables">
+<h1>Environment Variables<a class="headerlink" href="#environment-variables" title="Link to this heading">¶</a></h1>
+<p>The following environment variables can be used to customize behavior:</p>
+<ul class="simple">
+<li><p><span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">WARP_IPC_LOG_LEVEL</span></code>
+Controls the logging level.
+Default: <code class="docutils literal notranslate"><span class="pre">INFO</span></code> (<cite>1</cite>)
+Options: <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> (<cite>0</cite>), <code class="docutils literal notranslate"><span class="pre">INFO</span></code> (<cite>1</cite>), <code class="docutils literal notranslate"><span class="pre">IMPORTANT_INFO</span></code> (<cite>2</cite>), <code class="docutils literal notranslate"><span class="pre">WARN</span></code> (<cite>3</cite>), <code class="docutils literal notranslate"><span class="pre">VITAL_INFO</span></code> (<cite>4</cite>), <code class="docutils literal notranslate"><span class="pre">ERROR</span></code> (<cite>5</cite>), <code class="docutils literal notranslate"><span class="pre">NONE</span></code> (<cite>999</cite>)</p></li>
+<li><p><span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">WARP_IPC_DEBUG</span></code>
+Enables additional internal assertions and debug checks.
+Default: <code class="docutils literal notranslate"><span class="pre">0</span></code> (disabled)
+Set to <code class="docutils literal notranslate"><span class="pre">1</span></code> to enable.</p></li>
+<li><p><span class="target" id="index-2"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">TACCEL_PTX_DIR</span></code>
+Overrides the default kernel cache directory used by Warp.
+Default: <code class="docutils literal notranslate"><span class="pre">&quot;./ptx/ptx_86&quot;</span></code>
+Used to store precompiled PTX files.</p></li>
+<li><p><span class="target" id="index-3"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">TACCEL_PTX_ARCH</span></code>
+Sets the target CUDA PTX architecture.
+Default: <code class="docutils literal notranslate"><span class="pre">86</span></code>
+Must be an integer (e.g., <code class="docutils literal notranslate"><span class="pre">86</span></code> for SM_86 architecture). Invalid values will raise a <cite>ValueError</cite>.</p></li>
+</ul>
 </section>
 
         </article>
@@ -291,7 +303,7 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="../modules/tactile_robot.html">
+          <a class="next-page" href="tactile_robot.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
@@ -300,14 +312,14 @@
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="../modules/integrator.html">
+          <a class="prev-page" href="handle.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">IPC Integrator</div>
+                <div class="title">Simulation Handles</div>
                 
               </div>
             </a>
@@ -332,27 +344,8 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer">
+    <aside class="toc-drawer no-toc">
       
-      
-      <div class="toc-sticky toc-scroll">
-        <div class="toc-title-container">
-          <span class="toc-title">
-            On this page
-          </span>
-        </div>
-        <div class="toc-tree-container">
-          <div class="toc-tree">
-            <ul>
-<li><a class="reference internal" href="#">Warp-IPC Examples</a><ul>
-<li><a class="reference internal" href="#deformable-object-grasping">Deformable Object Grasping</a></li>
-</ul>
-</li>
-</ul>
-
-          </div>
-        </div>
-      </div>
       
       
     </aside>

@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="VBTS Config" href="sensor.html" /><link rel="prev" title="IPC Integrator" href="integrator.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="VBTS Config" href="sensor.html" /><link rel="prev" title="Environment Variables" href="envvar.html" />
 
     <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
         <title>Tactile Robot Models - Taccel - Docs</title>
@@ -213,6 +213,8 @@
 <li class="toctree-l1"><a class="reference internal" href="robot.html">Robot Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="model.html">ASR Model APIs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="integrator.html">IPC Integrator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="handle.html">Simulation Handles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="envvar.html">Environment Variables</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Taccel References</span></p>
 <ul class="current">
@@ -280,94 +282,20 @@
 </a>
 <dl class="py class">
 <dt class="sig sig-object py" id="taccel.taccel.TactileRobot">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">taccel.taccel.</span></span><span class="sig-name descname"><span class="pre">TactileRobot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">urdf_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tac_fab_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actuated_joints</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">finger_link_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fingertip_link_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">device</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">device(type='cuda',</span> <span class="pre">index=0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_collision</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#taccel.taccel.TactileRobot" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">taccel.taccel.</span></span><span class="sig-name descname"><span class="pre">TactileRobot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">urdf_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actuated_joints</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">device</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">device(type='cuda',</span> <span class="pre">index=0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_collision</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#taccel.taccel.TactileRobot" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="robot.html#warp_ipc.robots.Robot" title="warp_ipc.robots.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Robot</span></code></a></p>
 <p>A class representing a tactile robot with various tactile sensors.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="taccel.taccel.TactileRobot.vbts_cfgs">
-<span class="sig-name descname"><span class="pre">vbts_cfgs</span></span><a class="headerlink" href="#taccel.taccel.TactileRobot.vbts_cfgs" title="Link to this definition">¶</a></dt>
-<dd><p>List of VBTSConfig objects loaded from the tactile fabrication file.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list[<a class="reference internal" href="sensor.html#taccel.vbts.VBTSConfig" title="taccel.vbts.VBTSConfig">VBTSConfig</a>]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="taccel.taccel.TactileRobot.gel_handles">
-<span class="sig-name descname"><span class="pre">gel_handles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#taccel.taccel.TactileRobot.gel_handles" title="Link to this definition">¶</a></dt>
-<dd><p>Returns a list of gel body handles from the VBTS configurations.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="taccel.taccel.TactileRobot.tac_rest_meshes">
-<span class="sig-name descname"><span class="pre">tac_rest_meshes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#taccel.taccel.TactileRobot.tac_rest_meshes" title="Link to this definition">¶</a></dt>
-<dd><p>Returns a list of unstructured grids representing the rest meshes of the tactile sensors.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="taccel.taccel.TactileRobot.tac_gel_density">
-<span class="sig-name descname"><span class="pre">tac_gel_density</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#taccel.taccel.TactileRobot.tac_gel_density" title="Link to this definition">¶</a></dt>
-<dd><p>Returns a list of densities for the tactile gels.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="taccel.taccel.TactileRobot.tac_gel_E">
-<span class="sig-name descname"><span class="pre">tac_gel_E</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#taccel.taccel.TactileRobot.tac_gel_E" title="Link to this definition">¶</a></dt>
-<dd><p>Returns a list of Young’s modulus values for the tactile gels.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="taccel.taccel.TactileRobot.tac_gel_nu">
-<span class="sig-name descname"><span class="pre">tac_gel_nu</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#taccel.taccel.TactileRobot.tac_gel_nu" title="Link to this definition">¶</a></dt>
-<dd><p>Returns a list of Poisson’s ratio values for the tactile gels.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="taccel.taccel.TactileRobot.tac_gel_friction">
-<span class="sig-name descname"><span class="pre">tac_gel_friction</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#taccel.taccel.TactileRobot.tac_gel_friction" title="Link to this definition">¶</a></dt>
-<dd><p>Returns a list of friction coefficients for the tactile gels.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="taccel.taccel.TactileRobot.num_tactile_markers">
-<span class="sig-name descname"><span class="pre">num_tactile_markers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#taccel.taccel.TactileRobot.num_tactile_markers" title="Link to this definition">¶</a></dt>
-<dd><p>Returns the total number of tactile markers.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="taccel.taccel.TactileRobot.num_tac_verts">
-<span class="sig-name descname"><span class="pre">num_tac_verts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#taccel.taccel.TactileRobot.num_tac_verts" title="Link to this definition">¶</a></dt>
-<dd><p>Returns a list of the number of vertices for each tactile rest mesh.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="taccel.taccel.TactileRobot.num_tac">
-<span class="sig-name descname"><span class="pre">num_tac</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#taccel.taccel.TactileRobot.num_tac" title="Link to this definition">¶</a></dt>
-<dd><p>Returns the number of tactile sensors.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="taccel.taccel.TactileRobot._load_tac_fabrications">
-<span class="sig-name descname"><span class="pre">_load_tac_fabrications</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#taccel.taccel.TactileRobot._load_tac_fabrications" title="Link to this definition">¶</a></dt>
-<dd><p>Loads the tactile fabrications from a given path and returns a list of VBTSConfig objects.</p>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="taccel.taccel.TactileRobot.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">urdf_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tac_fab_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actuated_joints</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">finger_link_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fingertip_link_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">device</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">device(type='cuda',</span> <span class="pre">index=0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_collision</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#taccel.taccel.TactileRobot.__init__" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">urdf_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actuated_joints</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">device</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">device(type='cuda',</span> <span class="pre">index=0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_collision</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#taccel.taccel.TactileRobot.__init__" title="Link to this definition">¶</a></dt>
 <dd><p>Initializes the TactileRobot object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>urdf_path</strong> (<em>str</em>) – Path to the URDF file.</p></li>
-<li><p><strong>tac_fab_path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to the tactile fabrication file. Defaults to “”.</p></li>
 <li><p><strong>mesh_dir</strong> (<em>str</em><em> | </em><em>None</em><em>, </em><em>optional</em>) – Directory containing mesh files. Defaults to None.</p></li>
 <li><p><strong>actuated_joints</strong> (<em>list</em><em>[</em><em>str</em><em>] </em><em>| </em><em>None</em><em>, </em><em>optional</em>) – List of actuated joints. Defaults to None.</p></li>
 <li><p><strong>env_id</strong> (<em>int</em><em>, </em><em>optional</em>) – Environment ID. Defaults to 0.</p></li>
-<li><p><strong>finger_link_names</strong> (<em>List</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – List of finger link names. Defaults to [].</p></li>
-<li><p><strong>fingertip_link_names</strong> (<em>List</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – List of fingertip link names. Defaults to [].</p></li>
 <li><p><strong>device</strong> (<em>torch.device</em><em>, </em><em>optional</em>) – Device to load the tactile data onto. Defaults to torch.device(“cuda:0”).</p></li>
 </ul>
 </dd>
@@ -375,23 +303,23 @@
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="id0">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">gel_handles</span></span><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="taccel.taccel.TactileRobot.gel_handles">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">gel_handles</span></span><a class="headerlink" href="#taccel.taccel.TactileRobot.gel_handles" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="id1">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">num_tac</span></span><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="taccel.taccel.TactileRobot.num_tac">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">num_tac</span></span><a class="headerlink" href="#taccel.taccel.TactileRobot.num_tac" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="id2">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">num_tac_verts</span></span><a class="headerlink" href="#id2" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="taccel.taccel.TactileRobot.num_tac_verts">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">num_tac_verts</span></span><a class="headerlink" href="#taccel.taccel.TactileRobot.num_tac_verts" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="id3">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">num_tactile_markers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#id3" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="taccel.taccel.TactileRobot.num_tactile_markers">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">num_tactile_markers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#taccel.taccel.TactileRobot.num_tactile_markers" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -400,29 +328,41 @@
 <dd></dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="id4">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tac_gel_E</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#id4" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="taccel.taccel.TactileRobot.tac_gel_E">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tac_gel_E</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#taccel.taccel.TactileRobot.tac_gel_E" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="id5">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tac_gel_density</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#id5" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="taccel.taccel.TactileRobot.tac_gel_density">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tac_gel_density</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#taccel.taccel.TactileRobot.tac_gel_density" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="id6">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tac_gel_friction</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#id6" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="taccel.taccel.TactileRobot.tac_gel_friction">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tac_gel_friction</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#taccel.taccel.TactileRobot.tac_gel_friction" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="id7">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tac_gel_nu</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#id7" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="taccel.taccel.TactileRobot.tac_gel_nu">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tac_gel_nu</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#taccel.taccel.TactileRobot.tac_gel_nu" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="id8">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tac_rest_meshes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">UnstructuredGrid</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#id8" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="taccel.taccel.TactileRobot.tac_rest_meshes">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tac_rest_meshes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">UnstructuredGrid</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#taccel.taccel.TactileRobot.tac_rest_meshes" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="taccel.taccel.TactileRobot.urdf_path">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">urdf_path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#taccel.taccel.TactileRobot.urdf_path" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the path to the URDF file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="taccel.taccel.TactileRobot.write_urdf">
+<span class="sig-name descname"><span class="pre">write_urdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#taccel.taccel.TactileRobot.write_urdf" title="Link to this definition">¶</a></dt>
+<dd><p>Write the modified URDF back to file</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -442,14 +382,14 @@
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="integrator.html">
+          <a class="prev-page" href="envvar.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">IPC Integrator</div>
+                <div class="title">Environment Variables</div>
                 
               </div>
             </a>
