@@ -2,7 +2,16 @@
 <html class="no-js" lang="en" data-content_root="./">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="#" /><link rel="search" title="Search" href="search.html" />
+    <meta name="color-scheme" content="light dark">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2LMJZFSYL3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-2LMJZFSYL3');
+    </script>
+    <link rel="index" title="Index" href="#" /><link rel="search" title="Search" href="search.html" />
 
     <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 --><title>Index - Taccel - Docs</title>
 <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
@@ -308,10 +317,10 @@
           <li><a href="modules/model.html#warp_ipc.sim_model.ASRModel.add_robot">(warp_ipc.sim_model.ASRModel method)</a>
 </li>
         </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="modules/model.html#warp_ipc.sim_model.ASRModel.add_soft_shell_body">add_soft_shell_body() (warp_ipc.sim_model.ASRModel method)</a>
 </li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="modules/model.html#warp_ipc.sim_model.ASRModel.add_soft_vol_body">add_soft_vol_body() (warp_ipc.sim_model.ASRModel method)</a>
 </li>
         <li><a href="modules/taccel.html#taccel.taccel.TaccelModel.add_vbts_to_sim">add_vbts_to_sim() (taccel.taccel.TaccelModel method)</a>
@@ -329,6 +338,12 @@
         <li><a href="modules/model.html#warp_ipc.sim_model.ASRModel.apply_set_state">apply_set_state() (warp_ipc.sim_model.ASRModel method)</a>
 </li>
         <li><a href="modules/model.html#warp_ipc.sim_model.ASRModel">ASRModel (class in warp_ipc.sim_model)</a>
+</li>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer.attach_faces">attach_faces (taccel.turdf.sensor.SensorElastomer attribute)</a>
+</li>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer.attach_tet_indices">attach_tet_indices (taccel.turdf.sensor.SensorElastomer attribute)</a>
+</li>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer.attach_tet_mask">attach_tet_mask (taccel.turdf.sensor.SensorElastomer attribute)</a>
 </li>
     </ul></td>
   </tr></table>
@@ -380,9 +395,15 @@
 </li>
         <li><a href="modules/handle.html#warp_ipc.joint_handle.LocalJointHandle.child_handle">child_handle (warp_ipc.joint_handle.LocalJointHandle attribute)</a>
 </li>
+        <li><a href="modules/model.html#warp_ipc.sim_model.ASRModel.clear_force">clear_force() (warp_ipc.sim_model.ASRModel method)</a>
+</li>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer.coat_faces">coat_faces (taccel.turdf.sensor.SensorElastomer attribute)</a>
+</li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="modules/model.html#warp_ipc.sim_model.ASRModel.clear_force">clear_force() (warp_ipc.sim_model.ASRModel method)</a>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer.coat_tet_indices">coat_tet_indices (taccel.turdf.sensor.SensorElastomer attribute)</a>
+</li>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer.coat_tet_mask">coat_tet_mask (taccel.turdf.sensor.SensorElastomer attribute)</a>
 </li>
         <li><a href="modules/model.html#warp_ipc.sim_model.ASRModel.collision_map">collision_map (warp_ipc.sim_model.ASRModel property)</a>
 </li>
@@ -449,6 +470,8 @@
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="modules/model.html#warp_ipc.sim_model.ASRModel.epsv">epsv (warp_ipc.sim_model.ASRModel attribute)</a>
 </li>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer.extract_submesh_by_label">extract_submesh_by_label() (taccel.turdf.sensor.SensorElastomer method)</a>
+</li>
     </ul></td>
   </tr></table>
 </section>
@@ -463,11 +486,15 @@
           <li><a href="modules/model.html#warp_ipc.sim_model.ASRModel.finalize">(warp_ipc.sim_model.ASRModel method)</a>
 </li>
         </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="modules/handle.html#warp_ipc.body_handle.TriMeshBodyHandle.flipped">flipped (warp_ipc.body_handle.TriMeshBodyHandle attribute)</a>
 </li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="modules/model.html#warp_ipc.sim_model.ASRModel.frame">frame (warp_ipc.sim_model.ASRModel attribute)</a>
+</li>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer.from_file">from_file() (taccel.turdf.sensor.SensorElastomer class method)</a>
+</li>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer.from_mesh">from_mesh() (taccel.turdf.sensor.SensorElastomer class method)</a>
 </li>
         <li><a href="modules/integrator.html#warp_ipc.ipc_integrator.IPCIntegrator.ProfileStatistics.full_json">full_json (warp_ipc.ipc_integrator.IPCIntegrator.ProfileStatistics property)</a>
 </li>
@@ -571,6 +598,8 @@
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer.has_data">has_data (taccel.turdf.sensor.SensorElastomer property)</a>
+</li>
         <li><a href="modules/handle.html#warp_ipc.joint_handle.JointType.HELICAL">HELICAL (warp_ipc.joint_handle.JointType attribute)</a>
 </li>
     </ul></td>
@@ -583,14 +612,16 @@
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="modules/model.html#warp_ipc.sim_model.ASRModel.init">init() (warp_ipc.sim_model.ASRModel method)</a>
 </li>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer.inspect">inspect() (taccel.turdf.sensor.SensorElastomer method)</a>
+</li>
         <li><a href="modules/integrator.html#warp_ipc.ipc_integrator.IPCIntegrator.inversion_free_cubic_coef_tol">inversion_free_cubic_coef_tol (warp_ipc.ipc_integrator.IPCIntegrator attribute)</a>
 </li>
         <li><a href="modules/integrator.html#warp_ipc.ipc_integrator.IPCIntegrator.inversion_free_im_tol">inversion_free_im_tol (warp_ipc.ipc_integrator.IPCIntegrator attribute)</a>
 </li>
-        <li><a href="modules/integrator.html#warp_ipc.ipc_integrator.IPCIntegrator">IPCIntegrator (class in warp_ipc.ipc_integrator)</a>
-</li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/integrator.html#warp_ipc.ipc_integrator.IPCIntegrator">IPCIntegrator (class in warp_ipc.ipc_integrator)</a>
+</li>
         <li><a href="modules/integrator.html#warp_ipc.ipc_integrator.IPCIntegrator.ProfileStatistics">IPCIntegrator.ProfileStatistics (class in warp_ipc.ipc_integrator)</a>
 </li>
         <li><a href="modules/handle.html#warp_ipc.body_handle.TetMeshBodyHandle.is_affine">is_affine (warp_ipc.body_handle.TetMeshBodyHandle property)</a>
@@ -681,18 +712,30 @@
   <h2>M</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer.marker_surf_bc_indices">marker_surf_bc_indices (taccel.turdf.sensor.SensorElastomer attribute)</a>
+</li>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer.marker_surf_bc_weights">marker_surf_bc_weights (taccel.turdf.sensor.SensorElastomer attribute)</a>
+</li>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer.marker_tet_bc_coords">marker_tet_bc_coords (taccel.turdf.sensor.SensorElastomer attribute)</a>
+</li>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer.marker_tet_bc_indices">marker_tet_bc_indices (taccel.turdf.sensor.SensorElastomer attribute)</a>
+</li>
         <li><a href="modules/handle.html#warp_ipc.body_handle.TetMeshBodyHandle.mass">mass (warp_ipc.body_handle.TetMeshBodyHandle property)</a>
 
         <ul>
           <li><a href="modules/handle.html#warp_ipc.body_handle.TriMeshBodyHandle.mass">(warp_ipc.body_handle.TriMeshBodyHandle attribute)</a>
 </li>
         </ul></li>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer.matches_source_mesh_by_md5">matches_source_mesh_by_md5() (taccel.turdf.sensor.SensorElastomer method)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer.matches_source_mesh_by_path">matches_source_mesh_by_path() (taccel.turdf.sensor.SensorElastomer method)</a>
+</li>
         <li><a href="modules/integrator.html#warp_ipc.ipc_integrator.IPCIntegrator.max_cg_iter">max_cg_iter (warp_ipc.ipc_integrator.IPCIntegrator attribute)</a>
 </li>
         <li><a href="modules/model.html#warp_ipc.sim_model.ASRModel.max_collisions">max_collisions (warp_ipc.sim_model.ASRModel attribute)</a>
 </li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="modules/integrator.html#warp_ipc.ipc_integrator.IPCIntegrator.max_iter">max_iter (warp_ipc.ipc_integrator.IPCIntegrator attribute)</a>
 </li>
         <li><a href="modules/integrator.html#warp_ipc.ipc_integrator.IPCIntegrator.max_newton_iter">max_newton_iter (warp_ipc.ipc_integrator.IPCIntegrator attribute)</a>
@@ -711,8 +754,12 @@
   <h2>N</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
-        <li><a href="modules/robot.html#warp_ipc.robots.Link.name">name (warp_ipc.robots.Link property)</a>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer.name">name (taccel.turdf.sensor.SensorElastomer attribute)</a>
+
+        <ul>
+          <li><a href="modules/robot.html#warp_ipc.robots.Link.name">(warp_ipc.robots.Link property)</a>
 </li>
+        </ul></li>
         <li><a href="modules/integrator.html#warp_ipc.ipc_integrator.IPCIntegrator.ProfileStatistics.new_newton_iter">new_newton_iter() (warp_ipc.ipc_integrator.IPCIntegrator.ProfileStatistics method)</a>
 </li>
         <li><a href="modules/integrator.html#warp_ipc.ipc_integrator.IPCIntegrator.ProfileStatistics.new_timestep">new_timestep() (warp_ipc.ipc_integrator.IPCIntegrator.ProfileStatistics method)</a>
@@ -787,8 +834,16 @@
 </li>
         <li><a href="modules/model.html#warp_ipc.sim_model.ASRModel.reset_environement">reset_environement() (warp_ipc.sim_model.ASRModel method)</a>
 </li>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer.rest_attach_surface_mesh">rest_attach_surface_mesh (taccel.turdf.sensor.SensorElastomer property)</a>
+</li>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer.rest_coat_surface_mesh">rest_coat_surface_mesh (taccel.turdf.sensor.SensorElastomer property)</a>
+</li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer.rest_marker_positions">rest_marker_positions (taccel.turdf.sensor.SensorElastomer property)</a>
+</li>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer.rest_surface_mesh">rest_surface_mesh (taccel.turdf.sensor.SensorElastomer property)</a>
+</li>
         <li><a href="modules/handle.html#warp_ipc.joint_handle.JointType.REVOLUTE">REVOLUTE (warp_ipc.joint_handle.JointType attribute)</a>
 </li>
         <li><a href="modules/robot.html#warp_ipc.robots.Robot">Robot (class in warp_ipc.robots)</a>
@@ -806,6 +861,8 @@
   <table style="width: 100%" class="indextable genindextable"><tr>
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="modules/taccel.html#taccel.taccel.TaccelModel.sensor_xy_queries_local">sensor_xy_queries_local (taccel.taccel.TaccelModel property)</a>
+</li>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer">SensorElastomer (class in taccel.turdf.sensor)</a>
 </li>
         <li><a href="modules/model.html#warp_ipc.sim_model.ASRModel.set_affine_external_force_field">set_affine_external_force_field() (warp_ipc.sim_model.ASRModel method)</a>
 </li>
@@ -847,12 +904,12 @@
 </li>
         <li><a href="modules/model.html#warp_ipc.sim_model.ASRModel.shape_count_sim">shape_count_sim (warp_ipc.sim_model.ASRModel property)</a>
 </li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="modules/integrator.html#warp_ipc.ipc_integrator.IPCIntegrator.simulate">simulate() (warp_ipc.ipc_integrator.IPCIntegrator method)</a>
 </li>
         <li><a href="modules/model.html#warp_ipc.sim_model.ASRModel.soft_kinematic_constraint">soft_kinematic_constraint (warp_ipc.sim_model.ASRModel property)</a>
 </li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="modules/model.html#warp_ipc.sim_model.ASRModel.soft_kinematic_target">soft_kinematic_target (warp_ipc.sim_model.ASRModel property)</a>
 </li>
         <li><a href="modules/handle.html#warp_ipc.utils.constants.BodyType.SOFT_SHELL_LIKE">SOFT_SHELL_LIKE (warp_ipc.utils.constants.BodyType attribute)</a>
@@ -862,6 +919,8 @@
         <li><a href="modules/integrator.html#warp_ipc.ipc_integrator.IPCIntegrator.soft_vol_material_type">soft_vol_material_type (warp_ipc.ipc_integrator.IPCIntegrator attribute)</a>
 </li>
         <li><a href="modules/handle.html#warp_ipc.utils.constants.BodyType.SOFT_VOLUMETRIC">SOFT_VOLUMETRIC (warp_ipc.utils.constants.BodyType attribute)</a>
+</li>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer.source_mesh_md5">source_mesh_md5 (taccel.turdf.sensor.SensorElastomer property)</a>
 </li>
         <li><a href="modules/model.html#warp_ipc.sim_model.ASRModel.state">state() (warp_ipc.sim_model.ASRModel method)</a>
 </li>
@@ -876,6 +935,10 @@
         <li><a href="modules/handle.html#warp_ipc.body_handle.TriMeshBodyHandle.surf_edge_offset">surf_edge_offset (warp_ipc.body_handle.TriMeshBodyHandle attribute)</a>
 </li>
         <li><a href="modules/handle.html#warp_ipc.body_handle.TetMeshBodyHandle.surf_handle">surf_handle (warp_ipc.body_handle.TetMeshBodyHandle attribute)</a>
+</li>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer.surf_to_tet_index">surf_to_tet_index (taccel.turdf.sensor.SensorElastomer property)</a>
+</li>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer.surf_to_tet_index_map">surf_to_tet_index_map (taccel.turdf.sensor.SensorElastomer property)</a>
 </li>
         <li><a href="modules/handle.html#warp_ipc.body_handle.TetMeshBodyHandle.surf_tri_num">surf_tri_num (warp_ipc.body_handle.TetMeshBodyHandle property)</a>
 
@@ -892,6 +955,10 @@
         <li><a href="modules/handle.html#warp_ipc.body_handle.TriMeshBodyHandle.surf_x_num">surf_x_num (warp_ipc.body_handle.TriMeshBodyHandle attribute)</a>
 </li>
         <li><a href="modules/handle.html#warp_ipc.body_handle.TriMeshBodyHandle.surf_x_offset_num">surf_x_offset_num (warp_ipc.body_handle.TriMeshBodyHandle attribute)</a>
+</li>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer.surface_polydata">surface_polydata (taccel.turdf.sensor.SensorElastomer property)</a>
+</li>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer.surface_vertex_labels">surface_vertex_labels (taccel.turdf.sensor.SensorElastomer property)</a>
 </li>
     </ul></td>
   </tr></table>
@@ -929,10 +996,10 @@
 </li>
         <li><a href="modules/tactile_robot.html#taccel.taccel.TactileRobot.tac_rest_meshes">tac_rest_meshes (taccel.taccel.TactileRobot property)</a>
 </li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="modules/taccel.html#taccel.taccel.TaccelModel.tac_tf">tac_tf (taccel.taccel.TaccelModel property)</a>
 </li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="modules/taccel.html#taccel.taccel.TaccelModel.tac_tf_robot_local">tac_tf_robot_local (taccel.taccel.TaccelModel property)</a>
 </li>
         <li><a href="modules/envvar.html#index-3">TACCEL_PTX_ARCH</a>
@@ -943,7 +1010,13 @@
 </li>
         <li><a href="modules/tactile_robot.html#taccel.taccel.TactileRobot">TactileRobot (class in taccel.taccel)</a>
 </li>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer.tet_mesh">tet_mesh (taccel.turdf.sensor.SensorElastomer attribute)</a>
+</li>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer.tet_to_surf_index_map">tet_to_surf_index_map (taccel.turdf.sensor.SensorElastomer property)</a>
+</li>
         <li><a href="modules/handle.html#warp_ipc.body_handle.TetMeshBodyHandle">TetMeshBodyHandle (class in warp_ipc.body_handle)</a>
+</li>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer.tetrahedralize_from_mesh">tetrahedralize_from_mesh() (taccel.turdf.sensor.SensorElastomer method)</a>
 </li>
         <li><a href="modules/handle.html#warp_ipc.body_handle.TetMeshBodyHandle.tets_num">tets_num (warp_ipc.body_handle.TetMeshBodyHandle attribute)</a>
 </li>
@@ -999,10 +1072,12 @@
 </li>
         <li><a href="modules/taccel.html#taccel.taccel.TaccelModel.vbts_normals">vbts_normals (taccel.taccel.TaccelModel attribute)</a>
 </li>
-        <li><a href="modules/model.html#warp_ipc.sim_model.ASRModel.viz">viz (warp_ipc.sim_model.ASRModel attribute)</a>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer.vertex_labels">vertex_labels (taccel.turdf.sensor.SensorElastomer attribute)</a>
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/model.html#warp_ipc.sim_model.ASRModel.viz">viz (warp_ipc.sim_model.ASRModel attribute)</a>
+</li>
         <li><a href="modules/model.html#warp_ipc.sim_model.ASRModel.viz_envs">viz_envs (warp_ipc.sim_model.ASRModel attribute)</a>
 </li>
         <li><a href="modules/handle.html#warp_ipc.body_handle.TetMeshBodyHandle.volume">volume (warp_ipc.body_handle.TetMeshBodyHandle property)</a>
@@ -1023,11 +1098,15 @@
 </li>
         <li><a href="modules/envvar.html#index-0">WARP_IPC_LOG_LEVEL</a>
 </li>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer.with_marker">with_marker (taccel.turdf.sensor.SensorElastomer property)</a>
+</li>
         <li><a href="modules/handle.html#warp_ipc.joint_handle.WorldJointHandle">WorldJointHandle (class in warp_ipc.joint_handle)</a>
 </li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="modules/handle.html#warp_ipc.body_handle.TriMeshBodyHandle.wp_mesh">wp_mesh (warp_ipc.body_handle.TriMeshBodyHandle attribute)</a>
+</li>
+        <li><a href="modules/sensor.html#taccel.turdf.sensor.SensorElastomer.write">write() (taccel.turdf.sensor.SensorElastomer method)</a>
 </li>
         <li><a href="modules/model.html#warp_ipc.sim_model.ASRModel.write_scene">write_scene() (warp_ipc.sim_model.ASRModel method)</a>
 </li>

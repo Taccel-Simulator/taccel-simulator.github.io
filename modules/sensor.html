@@ -3,7 +3,16 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Taccel APIs" href="taccel.html" /><link rel="prev" title="Tactile Robot Models" href="tactile_robot.html" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2LMJZFSYL3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-2LMJZFSYL3');
+    </script>
+    <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Taccel APIs" href="taccel.html" /><link rel="prev" title="Tactile Robot Models" href="tactile_robot.html" />
 
     <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
         <title>VBTS Config - Taccel - Docs</title>
@@ -183,7 +192,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -269,7 +278,7 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
@@ -278,6 +287,244 @@
           <section id="vbts-config">
 <h1>VBTS Config<a class="headerlink" href="#vbts-config" title="Link to this heading">¶</a></h1>
 <p>The Vision-Based Tactile Sensor (VBTS) stores configures necessary to integrate them on robots within the simulation.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">taccel.turdf.sensor.</span></span><span class="sig-name descname"><span class="pre">SensorElastomer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tet_mesh</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">UnstructuredGrid</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertex_labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">marker_bc_idxs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">marker_bc_coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_mesh_md5</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Manages a tetrahedral mesh with custom data attributes for tactile sensors.</p>
+<p>This class encapsulates a pyvista.UnstructuredGrid tetrahedral mesh,
+vertex labels, and optional marker points. It provides methods for I/O to
+binary VTK files and for computing derived properties like surface meshes,
+labeled sub-parts, and marker coordinates.
+This class does not contain any URDF-specific or sensor-related logic.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer.attach_faces">
+<span class="sig-name descname"><span class="pre">attach_faces</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer.attach_faces" title="Link to this definition">¶</a></dt>
+<dd><p>Faces of the ATTACH submesh, derived from the tetrahedral mesh.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer.attach_tet_indices">
+<span class="sig-name descname"><span class="pre">attach_tet_indices</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer.attach_tet_indices" title="Link to this definition">¶</a></dt>
+<dd><p>Indices of vertices labeled as ATTACH (attachment points) on the tetrahedral mesh.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer.attach_tet_mask">
+<span class="sig-name descname"><span class="pre">attach_tet_mask</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer.attach_tet_mask" title="Link to this definition">¶</a></dt>
+<dd><p>Mask for vertices labeled as ATTACH (attachment points) on the tetrahedral mesh.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer.coat_faces">
+<span class="sig-name descname"><span class="pre">coat_faces</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer.coat_faces" title="Link to this definition">¶</a></dt>
+<dd><p>Faces of the COAT submesh, derived from the tetrahedral mesh.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer.coat_tet_indices">
+<span class="sig-name descname"><span class="pre">coat_tet_indices</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer.coat_tet_indices" title="Link to this definition">¶</a></dt>
+<dd><p>Indices of vertices labeled as COAT on the tetrahedral mesh.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer.coat_tet_mask">
+<span class="sig-name descname"><span class="pre">coat_tet_mask</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer.coat_tet_mask" title="Link to this definition">¶</a></dt>
+<dd><p>Mask for vertices labeled as COAT (reflective paint) on the tetrahedral mesh.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer.extract_submesh_by_label">
+<span class="sig-name descname"><span class="pre">extract_submesh_by_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label_flag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">VertexType</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer.extract_submesh_by_label" title="Link to this definition">¶</a></dt>
+<dd><p>Helper function to extract vertices and faces for a given label flag.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer.from_file">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">T</span></span></span><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer.from_file" title="Link to this definition">¶</a></dt>
+<dd><p>Loads data from a .vtk file and returns a new instance of the class.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer.from_mesh">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_V</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertex_label_fns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">VertexType</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">callable</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">marker_positions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">marker_pc_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_marker_on_surface</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">T</span></span></span><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer.from_mesh" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer.has_data">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">has_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer.has_data" title="Link to this definition">¶</a></dt>
+<dd><p>Returns True if marker boundary conditions are defined.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer.inspect">
+<span class="sig-name descname"><span class="pre">inspect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer.inspect" title="Link to this definition">¶</a></dt>
+<dd><p>Creates an interactive 3D plot to visualize the mesh and its components.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer.marker_surf_bc_indices">
+<span class="sig-name descname"><span class="pre">marker_surf_bc_indices</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer.marker_surf_bc_indices" title="Link to this definition">¶</a></dt>
+<dd><p>Marker Barycentric coordinates indices on the surface mesh.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer.marker_surf_bc_weights">
+<span class="sig-name descname"><span class="pre">marker_surf_bc_weights</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer.marker_surf_bc_weights" title="Link to this definition">¶</a></dt>
+<dd><p>Marker Barycentric coordinates weights on the surface mesh.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer.marker_tet_bc_coords">
+<span class="sig-name descname"><span class="pre">marker_tet_bc_coords</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer.marker_tet_bc_coords" title="Link to this definition">¶</a></dt>
+<dd><p>Marker Barycentric coordinates on the tetrahedral mesh.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer.marker_tet_bc_indices">
+<span class="sig-name descname"><span class="pre">marker_tet_bc_indices</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer.marker_tet_bc_indices" title="Link to this definition">¶</a></dt>
+<dd><p>Marker Barycentric coordinates indices on the tetrahedral mesh.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer.matches_source_mesh_by_md5">
+<span class="sig-name descname"><span class="pre">matches_source_mesh_by_md5</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">md5_hash</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer.matches_source_mesh_by_md5" title="Link to this definition">¶</a></dt>
+<dd><p>Check if current tet mesh was generated from a source mesh with the given MD5.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>md5_hash</strong> – MD5 hash string to compare against</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the MD5 matches, False otherwise</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer.matches_source_mesh_by_path">
+<span class="sig-name descname"><span class="pre">matches_source_mesh_by_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer.matches_source_mesh_by_path" title="Link to this definition">¶</a></dt>
+<dd><p>Check if current tet mesh was generated from the given source mesh file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mesh_path</strong> – Path to the mesh file to compare against</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the MD5 matches, False otherwise</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer.name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer.rest_attach_surface_mesh">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rest_attach_surface_mesh</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Trimesh</span></em><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer.rest_attach_surface_mesh" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the surface mesh of the ATTACH submesh.
+This is a cached property for efficiency.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer.rest_coat_surface_mesh">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rest_coat_surface_mesh</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Trimesh</span></em><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer.rest_coat_surface_mesh" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the surface mesh of the COAT submesh.
+This is a cached property for efficiency.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer.rest_marker_positions">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rest_marker_positions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer.rest_marker_positions" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the barycentric coordinates of the marker positions on the rest surface mesh.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer.rest_surface_mesh">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rest_surface_mesh</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Trimesh</span></em><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer.rest_surface_mesh" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the surface mesh of the tetrahedral mesh.
+This is a cached property for efficiency.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer.source_mesh_md5">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">source_mesh_md5</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer.source_mesh_md5" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the MD5 hash of the source mesh used for tetrahedralization.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer.surf_to_tet_index">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">surf_to_tet_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer.surf_to_tet_index" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer.surf_to_tet_index_map">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">surf_to_tet_index_map</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></em><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer.surf_to_tet_index_map" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer.surface_polydata">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">surface_polydata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">PolyData</span></em><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer.surface_polydata" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the surface mesh of the tetrahedral mesh as a PolyData object.
+This is a cached property for efficiency.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer.surface_vertex_labels">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">surface_vertex_labels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer.surface_vertex_labels" title="Link to this definition">¶</a></dt>
+<dd><p>Vertex labels for the surface mesh, derived from the tetrahedral mesh.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer.tet_mesh">
+<span class="sig-name descname"><span class="pre">tet_mesh</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">UnstructuredGrid</span></em><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer.tet_mesh" title="Link to this definition">¶</a></dt>
+<dd><p>Tetrahedral mesh of the elastomer geometry represented as a pyvista.UnstructuredGrid.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer.tet_to_surf_index_map">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tet_to_surf_index_map</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></em><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer.tet_to_surf_index_map" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer.tetrahedralize_from_mesh">
+<span class="sig-name descname"><span class="pre">tetrahedralize_from_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_V</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertex_label_fns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">VertexType</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">callable</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">marker_positions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">marker_pc_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_marker_on_surface</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer.tetrahedralize_from_mesh" title="Link to this definition">¶</a></dt>
+<dd><p>Creates a tetrahedral mesh from a surface mesh file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mesh_path</strong> – Path to the input mesh file</p></li>
+<li><p><strong>max_V</strong> – Max cell volume</p></li>
+<li><p><strong>vertex_label_fns</strong> – Optional vertex labels array detection fns for each vertex type</p></li>
+<li><p><strong>force_marker_on_surface</strong> – If True, forces marker positions to be on the surface mesh</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>New SensorElastomer instance with tetrahedralized mesh</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer.vertex_labels">
+<span class="sig-name descname"><span class="pre">vertex_labels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer.vertex_labels" title="Link to this definition">¶</a></dt>
+<dd><p>Vertex labels for the tetrahedral mesh, indicating vertex types.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer.with_marker">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">with_marker</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer.with_marker" title="Link to this definition">¶</a></dt>
+<dd><p>Returns True if marker boundary conditions are defined.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="taccel.turdf.sensor.SensorElastomer.write">
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#taccel.turdf.sensor.SensorElastomer.write" title="Link to this definition">¶</a></dt>
+<dd><p>Writes the object’s mesh and associated data to a binary .vtk file.</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
         </article>
@@ -326,8 +573,27 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">VBTS Config</a><ul>
+<li><a class="reference internal" href="#taccel.turdf.sensor.SensorElastomer"><code class="docutils literal notranslate"><span class="pre">SensorElastomer</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>

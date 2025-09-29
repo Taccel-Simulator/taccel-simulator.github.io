@@ -97,6 +97,7 @@ Index
 
    concepts
    install
+   Blog Post <supercharging>
 
 .. toctree::
    :maxdepth: 3

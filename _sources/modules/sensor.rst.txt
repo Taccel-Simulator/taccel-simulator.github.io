@@ -5,7 +5,7 @@ VBTS Config
 
 The Vision-Based Tactile Sensor (VBTS) stores configures necessary to integrate them on robots within the simulation.
 
-.. autoclass:: taccel.vbts.VBTSConfig
+.. autoclass:: taccel.turdf.sensor.SensorElastomer
    :members:
    :undoc-members:
    :show-inheritance:
