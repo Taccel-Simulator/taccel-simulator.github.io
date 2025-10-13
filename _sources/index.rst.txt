@@ -1,25 +1,29 @@
-.. Taccel documentation master file, created by
-   sphinx-quickstart on Mon Mar  3 14:21:46 2025.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 Taccel: Scaling Up Vision-based Tactile Robotics via High-performance GPU Simulation
 ====================================================================================
 
 
-`Yuyang Li <https://yuyangli.com>`__\ :sup:`1,2 *`,
-`Wenxin Du <https://dwxrycb123.github.io/>`__\ :sup:`3 *`,
-`Chang Yu <https://changyu.io/>`__\ :sup:`3 *`,
-`Puhao Li <https://xiaoyao-li.github.io>`__\ :sup:`2`,
-`Zihang Zhao <https://zihangzhao.com/>`__\ :sup:`1`,
-`Tengyu Liu <https://tengyu.ai>`__\ :sup:`2`,
-`Chenfanfu Jiang <https://www.math.ucla.edu/~cffjiang/>`__\ :sup:`3 †`,
-`Yixin Zhu <https://yzhu.io>`__\ :sup:`1 †`,
-`Siyuan Huang <https://siyuanhuang.com>`__\ :sup:`2 †`
+`Yuyang Li <https://yuyangli.com>`_ :sup:`1,3,4,5,*`,
+`Wenxin Du <https://dwxrycb123.github.io/>`_ :sup:`2,*`,
+`Chang Yu <https://changyu.io/>`_ :sup:`2,*`,
+`Puhao Li <https://xiaoyao-li.github.io>`_ :sup:`3,4`,
+`Zihang Zhao <https://zihangzhao.com/>`_ :sup:`1,4,5`,
+`Tengyu Liu <https://tengyu.ai>`_ :sup:`3,4`,
+`Chenfanfu Jiang <https://www.math.ucla.edu/~cffjiang/>`_ :sup:`2,†`,
+`Yixin Zhu <https://yzhu.io>`_ :sup:`1,4,5,6,†`,
+`Siyuan Huang <https://siyuanhuang.com>`_ :sup:`3,4,†`
 
-:sup:`1` Institute for AI, PKU
-:sup:`2` State Key Lab of General AI, BIGAI
-:sup:`3` AIVC Lab, UCLA
+:sup:`1` Peking University
+
+:sup:`2` University of California, Los Angeles
+
+:sup:`3` Beijing Institute for General AI
+
+:sup:`4` State Key Lab of General AI
+
+:sup:`5` Beijing Key Laboratory of Behavior and Mental Health, Peking University
+
+:sup:`6` Embodied Intelligence Lab, PKU-Wuhan Institute for Artificial Intelligence
+
 
 :sup:`*` Equal Contributor
 :sup:`†` Corresponding Author
@@ -27,8 +31,6 @@ Taccel: Scaling Up Vision-based Tactile Robotics via High-performance GPU Simula
 [📄 `Paper <https://taccel-simulator.github.io/assets/taccel-paper.pdf>`__]
 [📘 `Docs <https://taccel-simulator.github.io>`__]
 [🛠️ `Code <https://github.com/Taccel-Simulator/Taccel>`__]
-[📄 Dataset (Coming soon)]
-
 
 .. raw:: html
 
